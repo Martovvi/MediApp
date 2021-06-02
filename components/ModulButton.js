@@ -12,7 +12,11 @@ export default ModulButton = props => {
     }
 
     return(
-        <Pressable style={styles.touch} onPress={pressHandler} onLongPress={deletHandler} delayLongPress={700} >
+        <Pressable 
+        style={({pressed}) => [pressed ? styles.touched : styles.touch, styles.pressable]} 
+        onPress={pressHandler} 
+        onLongPress={deletHandler} 
+        delayLongPress={700} >
 
             <View style={styles.symbol}>
                 <Text style={styles.symbolText}>{props.icon}</Text>
@@ -25,18 +29,24 @@ export default ModulButton = props => {
 };
 
 const styles = StyleSheet.create({
-    touch: {
+    pressable: {
         flex : 1,
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 5,
         paddingVertical: 5,
-        borderColor: 'black',
-        borderWidth: 2,
         borderRadius: 10,
-        backgroundColor: Colors.primary,
+        borderWidth: 2,
         //Fester Wert für die Höhe, mit der ein Modul in der Liste angezeigt wird
         height: 80,
+    },
+    touch: {
+        backgroundColor: Colors.primary,
+        borderColor: 'black',
+    },
+    touched: {
+        backgroundColor: '#d55252',
+        borderColor: 'grey',
     },
     symbol: {
         flex: 2,
