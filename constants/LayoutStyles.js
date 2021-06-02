@@ -4,8 +4,8 @@ export default {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     borderColor: "black",
     borderWidth: 2,
   },
@@ -19,6 +19,7 @@ export default {
     borderWidth: 2,
     alignItems: "center",
     flexDirection: "column",
+    borderRadius: 15,
   },
   bottomContainer: {
     flex: 0.5,
