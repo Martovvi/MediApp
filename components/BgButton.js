@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   buttonText: {
-    fontSize: 70,
+    fontSize: 75,
     color: Colors.buttonTextColor,
     marginBottom: 10,
   },

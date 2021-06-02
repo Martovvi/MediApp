@@ -1,23 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import BgButton from "../components/BgButton";
+import ModulList from "../components/ModulList"
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
 export default MainScreen = (props) => {
+
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Medi App </Text>
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
-        <View style={styles.middleElement}>
-          <View style={styles.symbolElement}>
-            <Text style={styles.symbolText}> Sym</Text>
-          </View>
-          <Text style={styles.middleText}> BMI Rechner </Text>
-        </View>
+        <ModulList />
       </View>
       <View style={LayoutStyles.bottomContainer}>
         <BgButton title="+"></BgButton>
