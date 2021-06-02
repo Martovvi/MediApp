@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
@@ -18,8 +19,8 @@ export default MainScreen = (props) => {
           <Text style={styles.middleText}> BMI Rechner </Text>
         </View>
       </View>
-      <View style={[styles.bottomContainer, LayoutStyles.bottomContainer]}>
-        <Text style={styles.bottomText}> + </Text>
+      <View style={LayoutStyles.bottomContainer}>
+        <BgButton title="+"></BgButton>
       </View>
     </View>
   );
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   symbolElement: {
-    backgroundColor: "red",
     padding: 15,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -76,13 +76,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontWeight: "bold",
-  },
-  bottomContainer: {
-    backgroundColor: Colors.primary,
-  },
-  bottomText: {
-    fontSize: 75,
-    marginBottom: 10,
-    color: "white",
   },
 });

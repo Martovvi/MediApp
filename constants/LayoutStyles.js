@@ -27,11 +27,5 @@ export default {
     marginLeft: 25,
     marginRight: 25,
     marginBottom: 20,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    borderWidth: 2,
-    borderColor: "black",
   },
 };
