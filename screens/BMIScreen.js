@@ -90,7 +90,7 @@ export default MainScreen = (props) => {
             clearTextOnFocus={true}
           />
         </View>
-        <BgButton size={40} title="Berechnen" onClick={berechnenHandler} />
+        <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
         <BMIResultsScreen
           visible={showBMIResults}
           onCancelModal={cancelModalHandler}

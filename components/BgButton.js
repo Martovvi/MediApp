@@ -5,41 +5,31 @@ import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
 export default BgButton = (props) => {
-
-  console.log(props.text);
-
   var buttonStyles = [
     props.return ? LayoutStyles.returnButton : {},
     props.home ? LayoutStyles.homeButton : {},
-    props.text ? LayoutStyles.textButton : {}
+    props.text ? LayoutStyles.textButton : {},
   ];
 
-  if(props.home){
+  if (props.home) {
     return (
-      <TouchableOpacity style={buttonStyles}>
-        <Text style={styles.buttonText}>#</Text>
+      <TouchableOpacity style={buttonStyles} onPress={props.onClick}>
+        <Text style={LayoutStyles.buttonText}>#</Text>
       </TouchableOpacity>
     );
   }
-  if(props.return){
+  if (props.return) {
     return (
-      <TouchableOpacity style={buttonStyles}>
-        <Text style={styles.buttonText}>-</Text>
+      <TouchableOpacity style={buttonStyles} onPress={props.onClick}>
+        <Text style={LayoutStyles.buttonText}>-</Text>
       </TouchableOpacity>
     );
   }
-  if(props.text){
+  if (props.text) {
     return (
-      <TouchableOpacity style={buttonStyles}>
-        <Text style={styles.buttonText}>{props.title}</Text>
+      <TouchableOpacity style={buttonStyles} onPress={props.onClick}>
+        <Text style={LayoutStyles.buttonText}>{props.title}</Text>
       </TouchableOpacity>
     );
   }
 };
-
-const styles = StyleSheet.create({
-  buttonText: {
-    color: Colors.buttonTextColor,
-    marginBottom: 10,
-  },
-});

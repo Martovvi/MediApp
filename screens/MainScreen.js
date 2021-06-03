@@ -1,14 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import BgButton from "../components/BgButton";
-import ModulList from "../components/ModulList"
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
+import ModulList from "../components/ModulList";
 import React from "react";
 
 export default MainScreen = (props) => {
-
-
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
@@ -18,7 +16,7 @@ export default MainScreen = (props) => {
         <ModulList />
       </View>
       <View style={LayoutStyles.bottomContainer}>
-        <BgButton text title="+"></BgButton>
+        <BgButton home></BgButton>
       </View>
     </View>
   );

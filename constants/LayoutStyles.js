@@ -62,4 +62,9 @@ export default {
     borderWidth: 2,
     borderColor: "black",
   },
+  buttonText: {
+    color: Colors.buttonTextColor,
+    marginBottom: 10,
+    fontSize: 35,
+  },
 };

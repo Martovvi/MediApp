@@ -27,7 +27,7 @@ export default BMIResultsScreen = (props) => {
           </Text>
         </View>
         <View style={LayoutStyles.bottomContainer}>
-          <BgButton size={40} title="Zurück" onClick={props.onCancelModal} />
+          <BgButton return onClick={props.onCancelModal} />
         </View>
       </Modal>
     </View>
