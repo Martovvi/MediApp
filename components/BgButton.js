@@ -39,7 +39,6 @@ export default BgButton = (props) => {
 
 const styles = StyleSheet.create({
   buttonText: {
-    fontSize: 75,
     color: Colors.buttonTextColor,
     marginBottom: 10,
   },
