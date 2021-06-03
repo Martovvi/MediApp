@@ -5,7 +5,7 @@ import React from "react";
 
 export default BgButton = (props) => {
   return (
-    <TouchableOpacity onPress={props.onClick()}>
+    <TouchableOpacity onPress={props.onClick}>
       <View style={styles.button}>
         <Text style={[styles.buttonText, { fontSize: props.size }]}>
           {props.title}

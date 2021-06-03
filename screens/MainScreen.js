@@ -20,7 +20,7 @@ export default MainScreen = (props) => {
         </View>
       </View>
       <View style={LayoutStyles.bottomContainer}>
-        <BgButton size={75} title="+"></BgButton>
+        <BgButton size={75} title="+" />
       </View>
     </View>
   );

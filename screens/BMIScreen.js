@@ -1,6 +1,7 @@
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
 
+import BMIResultsScreen from "./BMIResultsScreen";
 import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
@@ -9,6 +10,17 @@ export default MainScreen = (props) => {
   const [alter, setAlter] = useState();
   const [körpergröße, setKörpergröße] = useState();
   const [gewicht, setGewicht] = useState();
+  const [showBMIResults, setShowBMIResults] = useState(false);
+  const [bmi, setBMI] = useState(0);
+
+  const calculateBMI = (körpergröße, gewicht) => {
+    let calculatedBMI = (gewicht / ((körpergröße * körpergröße) / 100)) * 100;
+    let roundedBMI = (
+      Math.round((calculatedBMI + Number.EPSILON) * 100) / 100
+    ).toFixed(2);
+    setBMI(calculatedBMI.toFixed(2));
+    return roundedBMI;
+  };
 
   const alterHandler = (inputText) => {
     setAlter(inputText);
@@ -22,6 +34,27 @@ export default MainScreen = (props) => {
     setGewicht(inputText);
   };
 
+  const berechnenHandler = () => {
+    if (
+      /^[0-9][^\s-]*$/.test(alter) &&
+      /^[0-9][^\s-]*$/.test(körpergröße) &&
+      /^[0-9][^\s-]*$/.test(gewicht)
+    ) {
+      setBMI(calculateBMI(körpergröße, gewicht));
+      setShowBMIResults(true);
+    } else {
+      Alert.alert(
+        "Ungültige Zahl",
+        "Bitte richtige Werte eingeben (ohne Sonderzeichen)",
+        [{ text: "Ok", style: "cancel" }]
+      );
+    }
+  };
+
+  const cancelModalHandler = () => {
+    setShowBMIResults(false);
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
@@ -32,7 +65,7 @@ export default MainScreen = (props) => {
           <Text style={styles.textInputText}> Alter</Text>
           <TextInput
             style={styles.textInput}
-            keyboardType={"number-pad"}
+            keyboardType="number-pad"
             placeholder="Alter"
             value={alter}
             onChangeText={alterHandler}
@@ -57,7 +90,13 @@ export default MainScreen = (props) => {
             clearTextOnFocus={true}
           />
         </View>
-        <BgButton size={40} title="Berechnen"></BgButton>
+        <BgButton size={40} title="Berechnen" onClick={berechnenHandler} />
+        <BMIResultsScreen
+          visible={showBMIResults}
+          onCancelModal={cancelModalHandler}
+          alter={alter}
+          bmi={bmi}
+        />
       </View>
       <View style={LayoutStyles.bottomContainer}></View>
     </View>
