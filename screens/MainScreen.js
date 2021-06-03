@@ -18,7 +18,7 @@ export default MainScreen = (props) => {
         <ModulList />
       </View>
       <View style={LayoutStyles.bottomContainer}>
-        <BgButton title="+"></BgButton>
+        <BgButton text title="+"></BgButton>
       </View>
     </View>
   );

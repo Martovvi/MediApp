@@ -1,3 +1,5 @@
+import Colors from "../constants/Colors";
+
 export default {
   topContainer: {
     flex: 1.1,
@@ -28,5 +30,36 @@ export default {
     marginLeft: 25,
     marginRight: 25,
     marginBottom: 20,
+  },
+  homeButton: {
+    height: 60,
+    width: 345,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
+  },
+  returnButton: {
+    height: 60,
+    width: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
+    marginRight: 265,
+  },
+  textButton: {
+    height: 60,
+    width: 345,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
   },
 };

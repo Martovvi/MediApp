@@ -1,29 +1,43 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Colors from "../constants/Colors";
+import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
 export default BgButton = (props) => {
-  return (
-    <TouchableOpacity>
-      <View style={styles.button}>
+
+  console.log(props.text);
+
+  var buttonStyles = [
+    props.return ? LayoutStyles.returnButton : {},
+    props.home ? LayoutStyles.homeButton : {},
+    props.text ? LayoutStyles.textButton : {}
+  ];
+
+  if(props.home){
+    return (
+      <TouchableOpacity style={buttonStyles}>
+        <Text style={styles.buttonText}>#</Text>
+      </TouchableOpacity>
+    );
+  }
+  if(props.return){
+    return (
+      <TouchableOpacity style={buttonStyles}>
+        <Text style={styles.buttonText}>-</Text>
+      </TouchableOpacity>
+    );
+  }
+  if(props.text){
+    return (
+      <TouchableOpacity style={buttonStyles}>
         <Text style={styles.buttonText}>{props.title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
-  button: {
-    height: 60,
-    width: 345,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.primary,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "black",
-  },
   buttonText: {
     fontSize: 75,
     color: Colors.buttonTextColor,
