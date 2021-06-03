@@ -5,9 +5,11 @@ import React from "react";
 
 export default BgButton = (props) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onClick()}>
       <View style={styles.button}>
-        <Text style={styles.buttonText}>{props.title}</Text>
+        <Text style={[styles.buttonText, { fontSize: props.size }]}>
+          {props.title}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -25,7 +27,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   buttonText: {
-    fontSize: 75,
     color: Colors.buttonTextColor,
     marginBottom: 10,
   },

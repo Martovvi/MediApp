@@ -20,7 +20,7 @@ export default MainScreen = (props) => {
         </View>
       </View>
       <View style={LayoutStyles.bottomContainer}>
-        <BgButton title="+"></BgButton>
+        <BgButton size={75} title="+"></BgButton>
       </View>
     </View>
   );
@@ -47,10 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.accent,
     padding: 10,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    borderRadius: 15,
     borderColor: "black",
     borderWidth: 2,
     width: "90%",
@@ -59,10 +56,7 @@ const styles = StyleSheet.create({
   },
   symbolElement: {
     padding: 15,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderRadius: 10,
     backgroundColor: Colors.lightBackground,
     borderColor: "black",
     borderWidth: 2,
