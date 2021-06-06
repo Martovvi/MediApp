@@ -13,7 +13,7 @@ export default ModulList = props => {
     } 
 
     const navigationHandler = screen => {
-        console.log("Wechsle zu: "+ screen)
+        props.navigation.navigate(screen)
     }
     
     return(

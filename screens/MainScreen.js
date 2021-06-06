@@ -13,10 +13,7 @@ export default MainScreen = (props) => {
         <Text style={styles.appTitle}> Medi App </Text>
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
-        <ModulList />
-      </View>
-      <View style={LayoutStyles.bottomContainer}>
-        <BgButton home></BgButton>
+        <ModulList navigation={props.navigation}/>
       </View>
     </View>
   );
