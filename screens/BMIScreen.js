@@ -141,5 +141,6 @@ const styles = StyleSheet.create({
     borderColor: "#d3d3d3",
     marginTop: 5,
     marginBottom: 25,
+    backgroundColor: "white",
   },
 });
