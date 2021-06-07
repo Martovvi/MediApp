@@ -4,8 +4,11 @@ import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
+import { evaluateBMI } from "../constants/BMI";
+
 
 export default BMIResultsScreen = (props) => {
+
   return (
     <View style={styles.container}>
       <Modal
@@ -23,7 +26,9 @@ export default BMIResultsScreen = (props) => {
           </View>
           <Text style={styles.resultText}>
             {" "}
-            Dafür, dass du {props.alter} Jahre alt bist, bist du ziemlich Fett!
+            Mit {props.alter} Jahren hast du einen BMI von {props.bmi}.
+            {" "}
+            {evaluateBMI(props.bmi)}
           </Text>
         </View>
         <View style={LayoutStyles.bottomContainer}>
@@ -72,7 +77,8 @@ const styles = StyleSheet.create({
   },
   resultText: {
     marginTop: 40,
-    fontSize: 25,
+    fontSize: 28,
+    fontWeight: 'bold',
     width: "80%",
     textAlign: "center",
   },
