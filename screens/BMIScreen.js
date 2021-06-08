@@ -36,9 +36,9 @@ export default MainScreen = (props) => {
 
   const berechnenHandler = () => {
     if (
-      /^[0-9][^\s-]*$/.test(alter) &&
-      /^[0-9][^\s-]*$/.test(körpergröße) &&
-      /^[0-9][^\s-]*$/.test(gewicht)
+      /^[0-9]+$/.test(alter) &&
+      /^[0-9]+$/.test(körpergröße) &&
+      /^[0-9]+$/.test(gewicht)
     ) {
       setBMI(calculateBMI(körpergröße, gewicht));
       setShowBMIResults(true);
@@ -98,7 +98,6 @@ export default MainScreen = (props) => {
           bmi={bmi}
         />
       </View>
-      <View style={LayoutStyles.bottomContainer}></View>
     </View>
   );
 };
