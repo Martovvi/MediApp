@@ -11,12 +11,11 @@ export default Allergiekalender = (props) => {
         <Text style={styles.appTitle}> Allergiekalender</Text>
       </View>
       <View style={styles.middleContainer}>
-        <View style={styles.imageContainer}>
           <Image
             style={styles.image}
+            trans
             source={require("../assets/pollensaison.png")}
           ></Image>
-        </View>
       </View>
       <View style={LayoutStyles.bottomContainer}>
         <BgButton return></BgButton>
@@ -44,15 +43,16 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     alignItems: "center",
+    justifyContent: 'center',
     borderRadius: 15,
-  },
-  imageContainer: {
-    width: "90%",
-    justifyContent: "center",
-    alignItems: "center",
+    borderColor: 'black',
+    borderWidth: 2,
   },
   image: {
-    marginTop: 20,
-    transform: [{ scaleX: 0.65 }, { scaleY: 1.0 }],
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+    transform: [{scaleY: 1.9}]
   },
 });
