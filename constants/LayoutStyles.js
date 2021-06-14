@@ -52,6 +52,22 @@ export default {
     borderWidth: 2,
     borderColor: "black",
   },
+  pollenButton: {
+    height: 60,
+    width: 345,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
+    padding: 40,
+  },
+  buttonPollenText: {
+    color: Colors.buttonTextColor,
+    marginBottom: 10,
+    fontSize: 29,
+  },
   buttonText: {
     color: Colors.buttonTextColor,
     marginBottom: 10,
@@ -60,12 +76,12 @@ export default {
   tabBar: {
     style: {
       height: 100,
-      paddingBottom: 20
+      paddingBottom: 20,
     },
     labelStyle: {
-        fontSize: 20,
-        textAlignVertical: 'center',
-        textAlign: 'center'
-    }
-  }
+      fontSize: 20,
+      textAlignVertical: "center",
+      textAlign: "center",
+    },
+  },
 };
