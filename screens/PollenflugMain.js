@@ -6,6 +6,14 @@ import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
 export default PollenflugMain = (props) => {
+  const navigateToAllergiekalender = () => {
+    props.navigation.navigate("Allergiekalender");
+  };
+
+  const navigateToPollenflug = () => {
+    props.navigation.navigate("Pollenflug");
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
@@ -13,10 +21,20 @@ export default PollenflugMain = (props) => {
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.buttonsContainer}>
-          <BgButton style={styles.button} pollen title="Allergiekalender" />
+          <BgButton
+            style={styles.button}
+            pollen
+            title="Allergiekalender"
+            onClick={navigateToAllergiekalender}
+          />
         </View>
         <View style={styles.buttonsContainer}>
-          <BgButton style={styles.button} pollen title="Aktueller Pollenflug" />
+          <BgButton
+            style={styles.button}
+            pollen
+            title="Aktueller Pollenflug"
+            onClick={navigateToPollenflug}
+          />
         </View>
       </View>
       <View style={LayoutStyles.bottomContainer}></View>
