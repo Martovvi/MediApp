@@ -18,10 +18,10 @@ export default AllergieNavigator = () => {
             let iconName;
 
             if (route.name === "Pollenflug") {
-              iconName = "ios-home";
+              iconName = "flower";
               return <Ionicons name={iconName} size={size + 5} color={color} />;
             } else if (route.name === "Allergiekalender") {
-              iconName = "list-ul";
+              iconName = "calendar";
               return (
                 <FontAwesome name={iconName} size={size + 5} color={color} />
               );
