@@ -8,19 +8,12 @@ export default Pollenflug = (props) => {
   const [selectedRegion, setSelectedRegion] = useState("region");
   const [selectedSubRegion, setSelectedSubRegion] = useState("subregion");
 
-  const navigationHandler = () => {
-    props.navigation.navigate("PollenflugMain");
-  };
-
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Pollenflug</Text>
       </View>
       <View style={styles.middleContainer}></View>
-      <View style={LayoutStyles.bottomContainer}>
-        <BgButton return onClick={navigationHandler}></BgButton>
-      </View>
     </View>
   );
 };

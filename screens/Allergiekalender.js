@@ -5,10 +5,6 @@ import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
 export default Allergiekalender = (props) => {
-  const navigationHandler = () => {
-    props.navigation.navigate("PollenflugMain");
-  };
-
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
@@ -20,9 +16,6 @@ export default Allergiekalender = (props) => {
           trans
           source={require("../assets/pollensaison.png")}
         ></Image>
-      </View>
-      <View style={LayoutStyles.bottomContainer}>
-        <BgButton return onClick={navigationHandler}></BgButton>
       </View>
     </View>
   );
