@@ -2,9 +2,9 @@ import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 
 import BMIResultsScreen from "./BMIResultsScreen";
-import BgButton from "../components/BgButton";
-import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
+import BgButton from "../../components/BgButton";
+import Colors from "../../constants/Colors";
+import LayoutStyles from "../../constants/LayoutStyles";
 
 export default MainScreen = (props) => {
   const [alter, setAlter] = useState();
@@ -55,6 +55,10 @@ export default MainScreen = (props) => {
     setShowBMIResults(false);
   };
 
+  const onReturnHandler = () => {
+    props.navigation.navigate("Home")
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
@@ -97,6 +101,8 @@ export default MainScreen = (props) => {
           alter={alter}
           bmi={bmi}
         />
+
+        <BgButton return onClick={onReturnHandler}/>
       </View>
     </View>
   );

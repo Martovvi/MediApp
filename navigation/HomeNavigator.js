@@ -1,15 +1,34 @@
 import React from 'react'
-import {createStackNavigator} from '@react-navigation/stack'
-import MainScreen from '../screens/MainScreen';
-import BMIScreen from '../screens/BMIScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Ionicons, FontAwesome} from '@expo/vector-icons'
+import HomeScreen from '../screens/HomeScreen';
+import ModulListScreen from '../screens/ModulScreen'
+import LayoutStyles from '../constants/LayoutStyles';
 
-const HomeStack = createStackNavigator();
+
+const Tab = createBottomTabNavigator();
 
 export default HomeNavigator = () => {
     return(
-        <HomeStack.Navigator initialRouteName="Start">
-            <HomeStack.Screen name="Start" component={MainScreen} options={{headerShown: false}}/>
-            <HomeStack.Screen name="BMI" component={BMIScreen} options={{headerShown: false}}/>
-        </HomeStack.Navigator>
+
+        <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({color, size }) => {
+                let iconName;
+                
+                if (route.name === 'Start') {
+                    iconName = 'ios-home'
+                    return <Ionicons name={iconName} size={size+5} color={color} />;
+                } else if (route.name === 'Module') {
+                iconName = 'list-ul';
+                    return <FontAwesome name={iconName} size={size+5} color={color} />;
+                }
+            }
+        })} tabBarOptions={LayoutStyles.tabBar}
+            initialRouteName="Start">
+
+            <Tab.Screen name="Start" component={HomeScreen}/>
+            <Tab.Screen name="Module" component={ModulListScreen}/>
+
+        </Tab.Navigator>
     );
 };
