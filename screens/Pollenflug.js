@@ -4,11 +4,11 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import { Picker } from "@react-native-picker/picker";
-import PollenMultiSelect from "../components/PollenMultiSelect";
+import PollenElement from "../components/PollenElement";
 
 export default Pollenflug = (props) => {
   const [selectedRegion, setSelectedRegion] = useState("region");
-  const [selectedPolle, setSelectedPolle] = useState("subregion");
+  const [selectedPolle, setSelectedPolle] = useState("polle");
 
   const isPlaceholder = (value) => {
     return value == "";
@@ -69,8 +69,28 @@ export default Pollenflug = (props) => {
               />
             </Picker>
           </View>
-          <View style={styles.multiSelectContainer}>
-            <PollenMultiSelect style={styles.pollenSelector} />
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectedPolle}
+              style={
+                isPlaceholder(selectedPolle)
+                  ? styles.placeholder
+                  : styles.pickerStyle
+              }
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedPolle(itemValue)
+              }
+            >
+              <Picker.Item color="grey" label="Pollen auswählen" value="" />
+              <Picker.Item label="Ambrosia" value="Ambrosia" />
+              <Picker.Item label="Beifuss" value="Beifuss" />
+              <Picker.Item label="Birke" value="Birke" />
+              <Picker.Item label="Erle" value="Erle" />
+              <Picker.Item label="Esche" value="Esche" />
+              <Picker.Item label="Gräser" value="Gräser" />
+              <Picker.Item label="Hasel" value="Hasel" />
+              <Picker.Item label="Roggen" value="Roggen" />
+            </Picker>
           </View>
         </View>
         <View style={styles.scrollViewContainer}>
@@ -78,24 +98,14 @@ export default Pollenflug = (props) => {
             style={styles.scrollView}
             contentContainerStyle={styles.contentContainerStyle}
           >
-            <View style={styles.pollenElement} backgroundColor={"red"}>
-              <Text>Hasel</Text>
-            </View>
-            <View style={styles.pollenElement} backgroundColor={"lime"}>
-              <Text>Birke</Text>
-            </View>
-            <View style={styles.pollenElement} backgroundColor={"yellow"}>
-              <Text>Roggen</Text>
-            </View>
-            <View style={styles.pollenElement} backgroundColor={"orange"}>
-              <Text>Erle</Text>
-            </View>
-            <View style={styles.pollenElement} backgroundColor={"orange"}>
-              <Text>Ambrosia</Text>
-            </View>
-            <View style={styles.pollenElement} backgroundColor={"red"}>
-              <Text>Esche</Text>
-            </View>
+            <PollenElement title="Ambrosia" color="red" />
+            <PollenElement title="Beifuss" color="yellow" />
+            <PollenElement title="Birke" color="lime" />
+            <PollenElement title="Erle" color="orange" />
+            <PollenElement title="Esche" color="lime" />
+            <PollenElement title="Gräser" color="yellow" />
+            <PollenElement title="Hasel" color="yellow" />
+            <PollenElement title="Roggen" color="red" />
           </ScrollView>
         </View>
       </View>
@@ -130,14 +140,14 @@ const styles = StyleSheet.create({
     marginTop: 15,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   pickerContainer: {
     width: 275,
     height: 50,
     borderWidth: 1,
     backgroundColor: "white",
-    marginBottom: 35,
+    marginBottom: 15,
   },
   pickerStyle: {
     width: "100%",
@@ -149,18 +159,10 @@ const styles = StyleSheet.create({
     width: "100%",
     color: "grey",
   },
-  multiSelectContainer: {
-    width: 275,
-    borderWidth: 1,
-  },
-  pollenSelector: {
-    width: "100%",
-    height: "100%",
-  },
   scrollViewContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: 360,
+    height: 365,
     width: "90%",
     marginBottom: 15,
   },
@@ -172,15 +174,5 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  pollenElement: {
-    marginTop: 20,
-    width: "80%",
-    height: 50,
-    borderWidth: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    marginBottom: 20,
   },
 });
