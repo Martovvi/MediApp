@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
-import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
+import Colors from "../../constants/Colors";
+import LayoutStyles from "../../constants/LayoutStyles";
 import { Picker } from "@react-native-picker/picker";
-import PollenElement from "../components/PollenElement";
+import PollenElement from "../../components/PollenElement";
 
 export default Pollenflug = (props) => {
   const [selectedRegion, setSelectedRegion] = useState("region");

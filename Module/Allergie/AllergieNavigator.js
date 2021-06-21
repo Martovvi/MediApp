@@ -1,9 +1,9 @@
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
-import Allergiekalender from "../screens/Allergiekalender";
-import LayoutStyles from "../constants/LayoutStyles";
+import Allergiekalender from "./Allergiekalender";
+import LayoutStyles from "../../constants/LayoutStyles";
 import { NavigationContainer } from "@react-navigation/native";
-import Pollenflug from "../screens/Pollenflug";
+import Pollenflug from "./Pollenflug";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 

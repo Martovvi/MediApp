@@ -1,8 +1,8 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 
-import BgButton from "../components/BgButton";
-import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
+import BgButton from "../../components/BgButton";
+import Colors from "../../constants/Colors";
+import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 
 export default PollenflugMain = (props) => {

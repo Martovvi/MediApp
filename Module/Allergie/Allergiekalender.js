@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
-import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
+import Colors from "../../constants/Colors";
+import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 
 export default Allergiekalender = (props) => {
@@ -14,7 +14,7 @@ export default Allergiekalender = (props) => {
         <Image
           style={styles.image}
           trans
-          source={require("../assets/pollensaison.png")}
+          source={require("../../assets/pollensaison.png")}
         ></Image>
       </View>
     </View>
