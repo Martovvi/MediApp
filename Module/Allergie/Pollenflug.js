@@ -15,7 +15,7 @@ import PollenElement from "../../components/PollenElement";
 
 export default Pollenflug = (props) => {
   const [selectedRegion, setSelectedRegion] = useState();
-  const [selectedPolle, setSelectedPolle] = useState("polle");
+  // const [selectedPolle, setSelectedPolle] = useState();
   const [ambrosiaSeverity, setAmbrosiaSeverity] = useState();
   const [beifussSeverity, setBeifussSeverity] = useState();
   const [birkeSeverity, setBirkeSeverity] = useState();
@@ -118,6 +118,7 @@ export default Pollenflug = (props) => {
               />
             </Picker>
           </View>
+          {/*
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedPolle}
@@ -141,6 +142,7 @@ export default Pollenflug = (props) => {
               <Picker.Item label="Roggen" value="Roggen" />
             </Picker>
           </View>
+          */}
         </View>
         <View style={styles.scrollViewContainer}>
           <ScrollView
@@ -218,10 +220,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   pickers: {
-    marginTop: 15,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10,
   },
   pickerContainer: {
     width: 275,
@@ -243,9 +243,9 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: 365,
+    height: 450,
     width: "90%",
-    marginBottom: 15,
+    marginBottom: 0,
   },
   scrollView: {
     backgroundColor: "white",
