@@ -1,5 +1,12 @@
+import {
+  Alert,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
@@ -7,11 +14,55 @@ import { Picker } from "@react-native-picker/picker";
 import PollenElement from "../../components/PollenElement";
 
 export default Pollenflug = (props) => {
-  const [selectedRegion, setSelectedRegion] = useState("region");
+  const [selectedRegion, setSelectedRegion] = useState();
   const [selectedPolle, setSelectedPolle] = useState("polle");
+  const [ambrosiaSeverity, setAmbrosiaSeverity] = useState();
+  const [beifussSeverity, setBeifussSeverity] = useState();
+  const [birkeSeverity, setBirkeSeverity] = useState();
+  const [erleSeverity, setErleSeverity] = useState();
+  const [escheSeverity, setEscheSeverity] = useState();
+  const [gräserSeverity, setGräserSeverity] = useState();
+  const [haselSeverity, setHaselSeverity] = useState();
+  const [roggenSeverity, setRoggenSeverity] = useState();
 
   const isPlaceholder = (value) => {
     return value == "";
+  };
+
+  const pollenHandler = async (region) => {
+    try {
+      let response = await fetch(
+        "https://api.achoo.dev/pollen/region/" + region
+      );
+      response = await response.json();
+      setAmbrosiaSeverity(response[0].pollen[0].today.severity);
+      setBeifussSeverity(response[0].pollen[1].today.severity);
+      setBirkeSeverity(response[0].pollen[2].today.severity);
+      setErleSeverity(response[0].pollen[3].today.severity);
+      setEscheSeverity(response[0].pollen[4].today.severity);
+      setGräserSeverity(response[0].pollen[5].today.severity);
+      setHaselSeverity(response[0].pollen[6].today.severity);
+      setRoggenSeverity(response[0].pollen[7].today.severity);
+    } catch (err) {
+      Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
+    }
+  };
+
+  const checkSeverity = (value) => {
+    if (value == "3") {
+      return "red";
+    }
+    if (value == "2-3") {
+      return "orange";
+    }
+    if (value == "1-2") {
+      return "yellow";
+    }
+    if (value == "0") {
+      return "lime";
+    } else {
+      return "lime";
+    }
   };
 
   return (
@@ -29,9 +80,7 @@ export default Pollenflug = (props) => {
                   ? styles.placeholder
                   : styles.pickerStyle
               }
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedRegion(itemValue)
-              }
+              onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
             >
               <Picker.Item color="grey" label="Region auswählen" value="" />
               <Picker.Item
@@ -98,14 +147,46 @@ export default Pollenflug = (props) => {
             style={styles.scrollView}
             contentContainerStyle={styles.contentContainerStyle}
           >
-            <PollenElement title="Ambrosia" color="red" />
-            <PollenElement title="Beifuss" color="yellow" />
-            <PollenElement title="Birke" color="lime" />
-            <PollenElement title="Erle" color="orange" />
-            <PollenElement title="Esche" color="lime" />
-            <PollenElement title="Gräser" color="yellow" />
-            <PollenElement title="Hasel" color="yellow" />
-            <PollenElement title="Roggen" color="red" />
+            <PollenElement
+              title="Ambrosia"
+              color={checkSeverity(ambrosiaSeverity)}
+              severity={ambrosiaSeverity}
+            />
+            <PollenElement
+              title="Beifuss"
+              color={checkSeverity(beifussSeverity)}
+              severity={beifussSeverity}
+            />
+            <PollenElement
+              title="Birke"
+              color={checkSeverity(birkeSeverity)}
+              severity={birkeSeverity}
+            />
+            <PollenElement
+              title="Erle"
+              color={checkSeverity(erleSeverity)}
+              severity={erleSeverity}
+            />
+            <PollenElement
+              title="Esche"
+              color={checkSeverity(escheSeverity)}
+              severity={escheSeverity}
+            />
+            <PollenElement
+              title="Gräser"
+              color={checkSeverity(gräserSeverity)}
+              severity={gräserSeverity}
+            />
+            <PollenElement
+              title="Hasel"
+              color={checkSeverity(haselSeverity)}
+              severity={haselSeverity}
+            />
+            <PollenElement
+              title="Roggen"
+              color={checkSeverity(roggenSeverity)}
+              severity={roggenSeverity}
+            />
           </ScrollView>
         </View>
       </View>
