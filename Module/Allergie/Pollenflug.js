@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   pickerContainer: {
     width: 275,
     height: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     backgroundColor: "white",
     marginBottom: 15,
   },
