@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import {Module} from "../Module/Module"
+import { HomeModuleContext } from "../Module/Module";
 import ModulButton from "./ModulButton";
 
 export default HomeModulList = (props) =>{
-    
-    const [modules, setModules] = useState(Module);
+    const [homeModule, setHomeModule] = useContext(HomeModuleContext);
 
     const onDeletHandler = title => {
       console.log("Geloescht: "+ title)
@@ -21,8 +20,8 @@ export default HomeModulList = (props) =>{
     return(
         <View style={styles.scrollView}>
             <ScrollView persistentScrollbar={true} style={{width: '100%'}}>
-                {modules.map(modul => (
-                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={navigationHandler} onDelete={onDeletHandler} id={modul.id}/>
+                {homeModule.map(modul => (
+                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={navigationHandler} onDelete={onDeletHandler}/>
                 ))}
             </ScrollView>
         </View>

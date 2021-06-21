@@ -1,16 +1,47 @@
 import { StyleSheet, Text, View } from "react-native";
-
 import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import ModulList from "../components/ModulList";
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { ModulListContext, HomeModuleContext, Module } from "../Module/Module";
 
-export default ModulListScreen = ({navigation}) => {
+export default ModulListScreen = ({ navigation }) => {
 
-  const onAddModulHandler = (module) =>{
+  const [homeModule, setHomeModule] = useContext(HomeModuleContext);
+  const [modulList, setModulList] = useContext(ModulListContext);
 
-  }
+  const [selectedModules, setSelectedModules] = useState([]);
+  var selectedModulesNumber = 0;
+
+  useEffect(() => {
+    if (selectedModules.length > selectedModulesNumber) {
+      selectedModulesNumber++;
+      console.log(selectedModules);
+    }
+  });
+
+  const onSelectModulHandler = (modul) => {
+    setSelectedModules(selectedModules => {
+      if (!selectedModules.includes(modul)) {
+        return [...selectedModules, modul]
+      }
+      else {
+        return [...selectedModules]
+      }
+    });
+  };
+
+  const onAddModulHandler = () => {
+    console.log(selectedModules);
+    selectedModules.map(selectedModul => (
+      setHomeModule(homeModules => [...homeModules, Module.find(modul => modul.text === selectedModul)])
+    ));
+    selectedModules.map(selectedModul => (
+      setModulList(modulList.filter(modul => modul.text != selectedModul))
+    ));
+  };
+
 
   return (
     <View style={styles.container}>
@@ -19,10 +50,10 @@ export default ModulListScreen = ({navigation}) => {
       </View>
       <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
 
-        <ModulList navigation={navigation} module/>
+        <ModulList navigation={navigation} selectModulHandler={onSelectModulHandler} />
 
       </View>
-      
+
       <View style={[LayoutStyles.bottomContainer, styles.bottomContainer]}>
 
         <BgButton size={40} text title="Hinzufügen" onClick={onAddModulHandler} />

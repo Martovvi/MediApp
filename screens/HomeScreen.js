@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
-import ModulList from "../components/ModulList";
+import HomeModulList from "../components/HomeModulList";
 import React from "react";
 
 export default HomeScreen = ({navigation}) => {
@@ -13,7 +13,7 @@ export default HomeScreen = ({navigation}) => {
         <Text style={styles.appTitle}> Medi App </Text>
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
-        <ModulList navigation={navigation} home/>
+        <HomeModulList navigation={navigation}/>
       </View>
     </View>
   );
