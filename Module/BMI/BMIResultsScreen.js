@@ -1,10 +1,10 @@
 import { Modal, StyleSheet, Text, View } from "react-native";
 
-import BgButton from "../components/BgButton";
-import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
+import BgButton from "../../components/BgButton";
+import Colors from "../../constants/Colors";
+import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
-import { evaluateBMI } from "../constants/BMI";
+import { evaluateBMI } from "./BMI";
 
 
 export default BMIResultsScreen = (props) => {

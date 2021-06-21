@@ -6,14 +6,14 @@ import LayoutStyles from "../constants/LayoutStyles";
 import ModulList from "../components/ModulList";
 import React from "react";
 
-export default MainScreen = (props) => {
+export default HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Medi App </Text>
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
-        <ModulList navigation={props.navigation}/>
+        <ModulList navigation={navigation} home/>
       </View>
     </View>
   );

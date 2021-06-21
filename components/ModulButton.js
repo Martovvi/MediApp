@@ -3,6 +3,7 @@ import { Pressable, View, StyleSheet, Text } from "react-native";
 import Colors from "../constants/Colors";
 
 export default ModulButton = props => {
+    
     const deletHandler = () => {
         props.onDelete(props.title);
     }
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
         flex : 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 5,
+        marginVertical: 15,
         paddingVertical: 5,
         borderRadius: 10,
         borderWidth: 2,

@@ -6,15 +6,28 @@ import LayoutStyles from "../constants/LayoutStyles";
 import ModulList from "../components/ModulList";
 import React from "react";
 
-export default ModulListScreen = (props) => {
+export default ModulListScreen = ({navigation}) => {
+
+  const onAddModulHandler = (module) =>{
+
+  }
+
   return (
     <View style={styles.container}>
-      <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+      <View style={[LayoutStyles.topContainer, styles.topContainer]}>
         <Text style={styles.appTitle}> Module </Text>
       </View>
-      <View
-        style={[styles.middleContainer, LayoutStyles.middleContainer]}
-      ></View>
+      <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
+
+        <ModulList navigation={navigation} module/>
+
+      </View>
+      
+      <View style={[LayoutStyles.bottomContainer, styles.bottomContainer]}>
+
+        <BgButton size={40} text title="Hinzufügen" onClick={onAddModulHandler} />
+
+      </View>
     </View>
   );
 };
@@ -32,6 +45,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   middleContainer: {
+    height: '80%',
     backgroundColor: Colors.lightBackground,
   },
   middleElement: {
@@ -63,5 +77,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontWeight: "bold",
+  },
+  bottomContainer: {
+    marginVertical: 20,
   },
 });
