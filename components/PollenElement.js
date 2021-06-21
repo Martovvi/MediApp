@@ -10,23 +10,16 @@ export default PollenElement = (props) => {
   };
 
   return (
-    <TouchableOpacity style={styles.touchableStyle}>
-      <View style={styles.pollenElement} backgroundColor={props.color}>
-        <Text style={styles.text}> {props.title} </Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.pollenElement} backgroundColor={props.color}>
+      <Text style={styles.text}> {props.title} </Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  touchableStyle: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 240,
-  },
   pollenElement: {
     marginTop: 20,
-    width: "100%",
+    width: "80%",
     height: 50,
     borderWidth: 2,
     justifyContent: "center",
