@@ -1,7 +1,7 @@
 import {
   Alert,
+  FlatList,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -63,6 +63,67 @@ export default Pollenflug = (props) => {
     } else {
       return "lime";
     }
+  };
+
+  const DATA = [
+    {
+      id: "asdfa0b43",
+      title: "Ambrosia",
+      color: checkSeverity(ambrosiaSeverity),
+      severity: ambrosiaSeverity
+    },
+    {
+      id: "gfdhjb1nb",
+      title: "Beifuss",
+      color: checkSeverity(beifussSeverity),
+      severity: beifussSeverity
+    },
+    {
+      id: "t0394jdog",
+      title: "Birke",
+      color: checkSeverity(birkeSeverity),
+      severity: birkeSeverity
+    },
+    {
+      id: "fbkle09cx",
+      title: "Erle",
+      color: checkSeverity(erleSeverity),
+      severity: erleSeverity
+    },
+    {
+      id: "904ifdlkp",
+      title: "Esche",
+      color: checkSeverity(escheSeverity),
+      severity: escheSeverity
+    },
+    {
+      id: "3828jksdf",
+      title: "Gräser",
+      color: checkSeverity(gräserSeverity),
+      severity: gräserSeverity
+    },
+    {
+      id: "xcvmb89nm",
+      title: "Hasel",
+      color: checkSeverity(haselSeverity),
+      severity: haselSeverity
+    },
+    {
+      id: "löäghj0öl",
+      title: "Roggen",
+      color: checkSeverity(roggenSeverity),
+      severity: roggenSeverity,
+    },
+  ]
+
+  const renderItem = ({ item }) => {
+    return (
+      <PollenElement
+        title={item.title}
+        color={item.color}
+        severity={item.severity}
+      />
+    );
   };
 
   return (
@@ -144,52 +205,8 @@ export default Pollenflug = (props) => {
           </View>
           */}
         </View>
-        <View style={styles.scrollViewContainer}>
-          <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.contentContainerStyle}
-          >
-            <PollenElement
-              title="Ambrosia"
-              color={checkSeverity(ambrosiaSeverity)}
-              severity={ambrosiaSeverity}
-            />
-            <PollenElement
-              title="Beifuss"
-              color={checkSeverity(beifussSeverity)}
-              severity={beifussSeverity}
-            />
-            <PollenElement
-              title="Birke"
-              color={checkSeverity(birkeSeverity)}
-              severity={birkeSeverity}
-            />
-            <PollenElement
-              title="Erle"
-              color={checkSeverity(erleSeverity)}
-              severity={erleSeverity}
-            />
-            <PollenElement
-              title="Esche"
-              color={checkSeverity(escheSeverity)}
-              severity={escheSeverity}
-            />
-            <PollenElement
-              title="Gräser"
-              color={checkSeverity(gräserSeverity)}
-              severity={gräserSeverity}
-            />
-            <PollenElement
-              title="Hasel"
-              color={checkSeverity(haselSeverity)}
-              severity={haselSeverity}
-            />
-            <PollenElement
-              title="Roggen"
-              color={checkSeverity(roggenSeverity)}
-              severity={roggenSeverity}
-            />
-          </ScrollView>
+        <View style={styles.flatListContainer}>
+          <FlatList style={styles.flatList} contentContainerStyle={styles.contentContainerStyle} data={DATA} renderItem={renderItem} keyExtractor={item => item.id}/>
         </View>
       </View>
     </SafeAreaView>
@@ -228,7 +245,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 2,
     backgroundColor: "white",
-    marginBottom: 15,
+    marginBottom: 18,
   },
   pickerStyle: {
     width: "100%",
@@ -240,14 +257,15 @@ const styles = StyleSheet.create({
     width: "100%",
     color: "grey",
   },
-  scrollViewContainer: {
+  flatListContainer: {
     justifyContent: "center",
     alignItems: "center",
     height: 455,
     width: "90%",
     marginBottom: 0,
+    alignItems: "center",
   },
-  scrollView: {
+  flatList: {
     backgroundColor: "white",
     width: "100%",
     borderWidth: 2,

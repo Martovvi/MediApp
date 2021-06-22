@@ -19,7 +19,7 @@ export default PollenElement = (props) => {
 const styles = StyleSheet.create({
   pollenElement: {
     marginTop: 20,
-    width: "80%",
+    width: 275,
     height: 50,
     borderWidth: 2,
     justifyContent: "center",
