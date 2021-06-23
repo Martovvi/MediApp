@@ -4,12 +4,12 @@ import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import ModulList from "../components/ModulList";
 import React, { useEffect, useContext, useState } from "react";
-import { ModulListContext, HomeModuleContext, Module } from "../Module/Module";
+import { ModulListContext, Modules } from "../Data/Module";
+import { storeData } from '../Data/AppStorage';
 
 export default ModulListScreen = ({ navigation }) => {
 
-  const [homeModule, setHomeModule] = useContext(HomeModuleContext);
-  const [modulList, setModulList] = useContext(ModulListContext);
+  const [modules, setModules] = useContext(ModulListContext);
 
   const [selectedModules, setSelectedModules] = useState([]);
   var selectedModulesNumber = 0;
@@ -20,6 +20,10 @@ export default ModulListScreen = ({ navigation }) => {
       console.log(selectedModules);
     }
   });
+
+  useEffect(() => {
+    storeData(modules);
+  }, [modules])
 
   const onSelectModulHandler = (modul) => {
     setSelectedModules(selectedModules => {
@@ -34,12 +38,20 @@ export default ModulListScreen = ({ navigation }) => {
 
   const onAddModulHandler = () => {
     console.log(selectedModules);
-    selectedModules.map(selectedModul => (
-      setHomeModule(homeModules => [...homeModules, Module.find(modul => modul.text === selectedModul)])
-    ));
-    selectedModules.map(selectedModul => (
-      setModulList(modulList.filter(modul => modul.text != selectedModul))
-    ));
+
+    let newHomeModules = modules.homeModules;
+
+    let newModulList = modules.modulList;
+
+    selectedModules.forEach(selectedModul => {
+      newHomeModules.push(Modules.find(modul => modul.text === selectedModul));
+      newModulList = newModulList.filter(modul => modul.text != selectedModul);
+    })
+
+    setModules(() => ({
+      homeModules: newHomeModules,
+      modulList: newModulList
+    }));
   };
 
 

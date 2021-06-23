@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 
-import { ModulListContext, HomeModuleContext } from "../Module/Module";
+import { ModulListContext } from "../Data/Module";
 import ModulButton from "./ModulButton";
 
 export default ModulList = (props) =>{
     
-    const [modulList] = useContext(ModulListContext);
+    const [modules] = useContext(ModulListContext);
     
     const onSelectHandler = modul =>{
         props.selectModulHandler(modul);
@@ -15,7 +15,7 @@ export default ModulList = (props) =>{
     return(
         <View style={styles.scrollView}>
             <ScrollView persistentScrollbar={true} style={{width: '100%'}}>
-                {modulList.map(modul => (
+                {modules.modulList.map(modul => (
                     <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={onSelectHandler} id={modul.id}/>
                 ))}
             </ScrollView>
