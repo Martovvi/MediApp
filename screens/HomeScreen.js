@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
 import HomeModulList from "../components/HomeModulList";
+import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
 
-export default HomeScreen = ({navigation}) => {
+export default HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Medi App </Text>
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
-        <HomeModulList navigation={navigation}/>
+        <HomeModulList navigation={navigation} />
       </View>
     </View>
   );
@@ -21,6 +21,7 @@ export default HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -29,9 +30,6 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: "white",
     fontWeight: "bold",
-  },
-  middleContainer: {
-    backgroundColor: Colors.lightBackground,
   },
   middleElement: {
     flexDirection: "row",

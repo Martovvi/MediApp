@@ -6,9 +6,7 @@ import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 import { evaluateBMI } from "./BMI";
 
-
 export default BMIResultsScreen = (props) => {
-
   return (
     <View style={styles.container}>
       <Modal
@@ -26,8 +24,7 @@ export default BMIResultsScreen = (props) => {
           </View>
           <Text style={styles.resultText}>
             {" "}
-            Mit {props.alter} Jahren hast du einen BMI von {props.bmi}.
-            {" "}
+            Mit {props.alter} Jahren hast du einen BMI von {props.bmi}.{" "}
             {evaluateBMI(props.bmi)}
           </Text>
         </View>
@@ -42,6 +39,7 @@ export default BMIResultsScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.primary,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -60,13 +58,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     borderRadius: 15,
+    backgroundColor: Colors.lightBackground,
   },
   resultContainer: {
     marginTop: 20,
     width: "100%",
     height: "30%",
     borderWidth: 2,
-    backgroundColor: Colors.lightBackground,
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
@@ -78,8 +76,9 @@ const styles = StyleSheet.create({
   resultText: {
     marginTop: 40,
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     width: "80%",
     textAlign: "center",
+    color: Colors.buttonTextColor,
   },
 });

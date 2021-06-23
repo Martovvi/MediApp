@@ -56,8 +56,8 @@ export default MainScreen = (props) => {
   };
 
   const onReturnHandler = () => {
-    props.navigation.navigate("Home")
-  }
+    props.navigation.navigate("Home");
+  };
 
   return (
     <View style={styles.container}>
@@ -102,7 +102,7 @@ export default MainScreen = (props) => {
           bmi={bmi}
         />
 
-        <BgButton return onClick={onReturnHandler}/>
+        <BgButton return onClick={onReturnHandler} />
       </View>
     </View>
   );
@@ -111,6 +111,7 @@ export default MainScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -138,12 +139,13 @@ const styles = StyleSheet.create({
   textInputText: {
     fontSize: 20,
     fontWeight: "bold",
+    color: Colors.buttonTextColor,
   },
   textInput: {
     padding: 10,
     fontSize: 25,
     borderWidth: 2,
-    borderColor: "#d3d3d3",
+    borderColor: Colors.borderStyleColor,
     marginTop: 5,
     marginBottom: 25,
     backgroundColor: "white",

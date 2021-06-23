@@ -70,43 +70,43 @@ export default Pollenflug = (props) => {
       id: "asdfa0b43",
       title: "Ambrosia",
       color: checkSeverity(ambrosiaSeverity),
-      severity: ambrosiaSeverity
+      severity: ambrosiaSeverity,
     },
     {
       id: "gfdhjb1nb",
       title: "Beifuss",
       color: checkSeverity(beifussSeverity),
-      severity: beifussSeverity
+      severity: beifussSeverity,
     },
     {
       id: "t0394jdog",
       title: "Birke",
       color: checkSeverity(birkeSeverity),
-      severity: birkeSeverity
+      severity: birkeSeverity,
     },
     {
       id: "fbkle09cx",
       title: "Erle",
       color: checkSeverity(erleSeverity),
-      severity: erleSeverity
+      severity: erleSeverity,
     },
     {
       id: "904ifdlkp",
       title: "Esche",
       color: checkSeverity(escheSeverity),
-      severity: escheSeverity
+      severity: escheSeverity,
     },
     {
       id: "3828jksdf",
       title: "Gräser",
       color: checkSeverity(gräserSeverity),
-      severity: gräserSeverity
+      severity: gräserSeverity,
     },
     {
       id: "xcvmb89nm",
       title: "Hasel",
       color: checkSeverity(haselSeverity),
-      severity: haselSeverity
+      severity: haselSeverity,
     },
     {
       id: "löäghj0öl",
@@ -114,7 +114,7 @@ export default Pollenflug = (props) => {
       color: checkSeverity(roggenSeverity),
       severity: roggenSeverity,
     },
-  ]
+  ];
 
   const renderItem = ({ item }) => {
     return (
@@ -206,7 +206,14 @@ export default Pollenflug = (props) => {
           */}
         </View>
         <View style={styles.flatListContainer}>
-          <FlatList style={styles.flatList} contentContainerStyle={styles.contentContainerStyle} data={DATA} renderItem={renderItem} keyExtractor={item => item.id}/>
+          <FlatList
+            style={styles.flatList}
+            contentContainerStyle={styles.contentContainerStyle}
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            persistentScrollbar={true}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -216,6 +223,7 @@ export default Pollenflug = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -266,9 +274,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   flatList: {
-    backgroundColor: "white",
+    backgroundColor: Colors.lightBackground,
     width: "100%",
     borderWidth: 2,
+    borderColor: Colors.borderStyleColor,
   },
   contentContainerStyle: {
     justifyContent: "center",
