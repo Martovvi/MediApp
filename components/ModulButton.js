@@ -3,9 +3,10 @@ import { Pressable, View, StyleSheet, Text } from "react-native";
 import Colors from "../constants/Colors";
 
 export default ModulButton = props => {
-    
-    const deletHandler = () => {
-        props.onDelete(props.title);
+    var longPressed = false;
+
+    const longPressHandler = () => {
+        longPressed = true;
     }
 
     const pressHandler = () => {
@@ -14,9 +15,9 @@ export default ModulButton = props => {
 
     return(
         <Pressable 
-        style={({pressed}) => [pressed ? styles.touched : styles.touch, styles.pressable]} 
+        style={({pressed}) => [(pressed||longPressed) ? styles.touched : styles.untouched, styles.pressable]} 
         onPress={pressHandler} 
-        onLongPress={deletHandler} 
+        onLongPress={longPressHandler} 
         delayLongPress={700} >
 
             <View style={styles.symbol}>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         //Fester Wert für die Höhe, mit der ein Modul in der Liste angezeigt wird
         height: 80,
     },
-    touch: {
+    untouched: {
         backgroundColor: Colors.primary,
         borderColor: 'black',
     },
