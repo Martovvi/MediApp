@@ -1,4 +1,5 @@
 import Colors from "../constants/Colors";
+import React from "react";
 
 export default {
   topContainer: {
@@ -41,6 +42,11 @@ export default {
     borderWidth: 2,
     borderColor: "black",
     marginRight: 265,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 10,
+    elevation: 8,
   },
   textButton: {
     height: 60,
@@ -51,27 +57,21 @@ export default {
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "black",
-  },
-  pollenButton: {
-    height: 60,
-    width: 345,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.primary,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "black",
-    padding: 40,
-  },
-  buttonPollenText: {
-    color: Colors.buttonTextColor,
-    marginBottom: 10,
-    fontSize: 29,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 10,
+    elevation: 8,
   },
   buttonText: {
     color: Colors.buttonTextColor,
     marginBottom: 10,
     fontSize: 35,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 10,
+    elevation: 8,
   },
   tabBar: {
     style: {
