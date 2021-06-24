@@ -29,17 +29,19 @@ export default Pollenflug = (props) => {
     return value == "";
   };
 
-  let fetchData = "";
+  var fetchData;
+
   useEffect(() => {
     try {
-      fetchData = fetch(
-        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
-      );
-      console.log(resolve(fetchData));
+      fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
+        .then(response => response.json())
+        .then(data => {fetchData = data; console.log(fetchData);});
+
     } catch (err) {
       Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
     }
   });
+
 
   const pollenHandler = async (region) => {
     try {
