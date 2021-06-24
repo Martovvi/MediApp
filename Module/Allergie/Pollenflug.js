@@ -33,37 +33,32 @@ export default Pollenflug = (props) => {
 
   useEffect(() => {
     try {
-      fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
-        .then(response => response.json())
-        .then(data => {fetchData = data; console.log(fetchData);});
-
+      fetch(
+        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          fetchData = data.content;
+          //console.log(data.content);
+        });
     } catch (err) {
       Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
     }
   });
 
-
-  const pollenHandler = async (region) => {
-    try {
-      let response = await fetch(
-        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
-      );
-      console.log(response.region_id);
-      response = await response.json();
-      /*
-      setAmbrosiaSeverity(response[0].pollen[0].today.severity);
-      setBeifussSeverity(response[0].pollen[1].today.severity);
-      setBirkeSeverity(response[0].pollen[2].today.severity);
-      setErleSeverity(response[0].pollen[3].today.severity);
-      setEscheSeverity(response[0].pollen[4].today.severity);
-      setGräserSeverity(response[0].pollen[5].today.severity);
-      setHaselSeverity(response[0].pollen[6].today.severity);
-      setRoggenSeverity(response[0].pollen[7].today.severity);
-      */
-      console.log(response);
-    } catch (err) {
-      Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
-    }
+  const pollenHandler = (region) => {
+    var dataSelectedRegion = fetchData.find(
+      (regions) => regions.region_name === region
+    );
+    console.log(dataSelectedRegion);
+    setAmbrosiaSeverity(dataSelectedRegion.Pollen.Ambrosia.today);
+    setBeifussSeverity(dataSelectedRegion.Pollen.Beifuss.today);
+    setBirkeSeverity(dataSelectedRegion.Pollen.Birke.today);
+    setErleSeverity(dataSelectedRegion.Pollen.Erle.today);
+    setEscheSeverity(dataSelectedRegion.Pollen.Esche.today);
+    setGräserSeverity(dataSelectedRegion.Pollen.Graeser.today);
+    setHaselSeverity(dataSelectedRegion.Pollen.Hasel.today);
+    setRoggenSeverity(dataSelectedRegion.Pollen.Roggen.today);
   };
 
   const checkSeverity = (value) => {
@@ -162,35 +157,38 @@ export default Pollenflug = (props) => {
               onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
             >
               <Picker.Item color="grey" label="Region auswählen" value="" />
-              <Picker.Item label="Schleswig-Holstein und Hamburg" value="10" />
+              <Picker.Item
+                label="Schleswig-Holstein und Hamburg"
+                value="Schleswig-Holstein und Hamburg"
+              />
               <Picker.Item
                 label="Baden-Württemberg"
-                value="Baden_Württemberg"
+                value="Baden-Württemberg"
               />
               <Picker.Item label="Thüringen" value="Thüringen" />
-              <Picker.Item label="Sachsen-Anhalt" value="Sachsen_Anhalt" />
+              <Picker.Item label="Sachsen-Anhalt" value="Sachsen-Anhalt" />
               <Picker.Item
                 label="Brandenburg und Berlin"
-                value="Brandenburg_und_Berlin"
+                value="Brandenburg und Berlin "
               />
               <Picker.Item label="Sachsen" value="Sachsen" />
               <Picker.Item
                 label="Rheinland-Pfalz und Saarland"
-                value="Rheinland_Pfalz_und_Saarland"
+                value="Rheinland-Pfalz und Saarland"
               />
               <Picker.Item label="Hessen" value="Hessen" />
               <Picker.Item
                 label="Nordrhein-Westfalen"
-                value="Nordrhein_Westfalen"
+                value="Nordrhein-Westfalen"
               />
               <Picker.Item
                 label="Niedersachsen und Bremen"
-                value="Niedersachsen_und_Bremen"
+                value="Niedersachsen und Bremen"
               />
               <Picker.Item label="Bayern" value="Bayern" />
               <Picker.Item
                 label="Mecklenburg-Vorpommern"
-                value="Mecklenburg_Vorpommern"
+                value="Mecklenburg-Vorpommern "
               />
             </Picker>
           </View>
