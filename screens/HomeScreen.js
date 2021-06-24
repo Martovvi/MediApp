@@ -1,14 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { Appearance } from "react-native-appearance";
 import Colors from "../constants/Colors";
 import HomeModulList from "../components/HomeModulList";
 import LayoutStyles from "../constants/LayoutStyles";
 import React from "react";
-import { useColorScheme } from "react-native-appearance";
 
 export default HomeScreen = ({ navigation }) => {
-  console.log(Appearance.getColorScheme());
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
