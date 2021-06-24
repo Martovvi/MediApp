@@ -50,7 +50,6 @@ export default Pollenflug = (props) => {
     var dataSelectedRegion = fetchData.find(
       (regions) => regions.region_name === region
     );
-    console.log(dataSelectedRegion);
     setAmbrosiaSeverity(dataSelectedRegion.Pollen.Ambrosia.today);
     setBeifussSeverity(dataSelectedRegion.Pollen.Beifuss.today);
     setBirkeSeverity(dataSelectedRegion.Pollen.Birke.today);
