@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
@@ -29,12 +29,26 @@ export default Pollenflug = (props) => {
     return value == "";
   };
 
+  let fetchData = "";
+  useEffect(() => {
+    try {
+      fetchData = fetch(
+        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
+      );
+      console.log(resolve(fetchData));
+    } catch (err) {
+      Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
+    }
+  });
+
   const pollenHandler = async (region) => {
     try {
       let response = await fetch(
-        "https://api.achoo.dev/pollen/region/" + region
+        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
       );
+      console.log(response.region_id);
       response = await response.json();
+      /*
       setAmbrosiaSeverity(response[0].pollen[0].today.severity);
       setBeifussSeverity(response[0].pollen[1].today.severity);
       setBirkeSeverity(response[0].pollen[2].today.severity);
@@ -43,6 +57,8 @@ export default Pollenflug = (props) => {
       setGräserSeverity(response[0].pollen[5].today.severity);
       setHaselSeverity(response[0].pollen[6].today.severity);
       setRoggenSeverity(response[0].pollen[7].today.severity);
+      */
+      console.log(response);
     } catch (err) {
       Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
     }
@@ -144,10 +160,7 @@ export default Pollenflug = (props) => {
               onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
             >
               <Picker.Item color="grey" label="Region auswählen" value="" />
-              <Picker.Item
-                label="Schleswig-Holstein und Hamburg"
-                value="Schleswig_Holstein_und_Hamburg"
-              />
+              <Picker.Item label="Schleswig-Holstein und Hamburg" value="10" />
               <Picker.Item
                 label="Baden-Württemberg"
                 value="Baden_Württemberg"
