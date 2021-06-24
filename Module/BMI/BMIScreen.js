@@ -1,5 +1,6 @@
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
+import { useDimensions } from '@react-native-community/hooks';
 
 import BMIResultsScreen from "./BMIResultsScreen";
 import BgButton from "../../components/BgButton";
@@ -7,6 +8,9 @@ import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
 
 export default MainScreen = (props) => {
+
+  const { height } = useDimensions().window;
+
   const [alter, setAlter] = useState();
   const [körpergröße, setKörpergröße] = useState();
   const [gewicht, setGewicht] = useState();
@@ -59,34 +63,47 @@ export default MainScreen = (props) => {
     props.navigation.navigate("Home")
   }
 
+  var BottomComponent;
+  if(height > 660){
+    BottomComponent= <View style={{flexDirection: 'column', height: '26%', justifyContent: 'space-between'}}>
+        <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
+        <BgButton return onClick={onReturnHandler} />
+      </View>;
+  }else{
+    BottomComponent= <View style={{flexDirection: 'row', width: "80%", justifyContent: 'space-between'}}>
+        <BgButton return onClick={onReturnHandler} />
+        <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
+      </View>;
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> BMI Rechner </Text>
       </View>
-      <View style={styles.middleContainer}>
-        <View style={styles.textInputContainer}>
-          <Text style={styles.textInputText}> Alter</Text>
+      <View style={[LayoutStyles.middleContainer, {justifyContent: 'flex-start', borderWidth: 0}]}>
+        <View style={height > 660 ? styles.textInputContainer : styles.textInputContainerHoritontal}>
+          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Alter</Text>
           <TextInput
-            style={styles.textInput}
+            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Alter"
             value={alter}
             onChangeText={alterHandler}
             clearTextOnFocus={true}
           />
-          <Text style={styles.textInputText}> Körpergröße</Text>
+          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Körpergröße</Text>
           <TextInput
-            style={styles.textInput}
+            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Körpergröße (cm)"
             value={körpergröße}
             onChangeText={körpergrößeHandler}
             clearTextOnFocus={true}
           />
-          <Text style={styles.textInputText}> Gewicht</Text>
+          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Gewicht</Text>
           <TextInput
-            style={styles.textInput}
+            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Gewicht (kg)"
             value={gewicht}
@@ -94,15 +111,15 @@ export default MainScreen = (props) => {
             clearTextOnFocus={true}
           />
         </View>
-        <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
+        {BottomComponent}
+        
         <BMIResultsScreen
           visible={showBMIResults}
           onCancelModal={cancelModalHandler}
           alter={alter}
           bmi={bmi}
         />
-
-        <BgButton return onClick={onReturnHandler}/>
+       
       </View>
     </View>
   );
@@ -120,23 +137,23 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
-  middleContainer: {
-    flex: 5,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
-    marginBottom: 15,
-    alignItems: "center",
-    flexDirection: "column",
-    borderRadius: 15,
-  },
   textInputContainer: {
-    marginTop: 55,
     width: "100%",
     marginBottom: 45,
+    height: '65%',
+    justifyContent: 'space-evenly',
+  },
+  textInputContainerHoritontal: {
+    width: "100%",
+    flexDirection: "column",
+    marginBottom: 10,
   },
   textInputText: {
-    fontSize: 20,
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+  textInputTextHorizontal: {
+    fontSize: 23,
     fontWeight: "bold",
   },
   textInput: {
@@ -144,8 +161,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     borderWidth: 2,
     borderColor: "#d3d3d3",
-    marginTop: 5,
-    marginBottom: 25,
+    backgroundColor: "white",
+  },
+  textInputHorizontal: {
+    padding: 2,
+    fontSize: 25,
+    borderWidth: 2,
+    borderColor: "#d3d3d3",
     backgroundColor: "white",
   },
 });

@@ -41,7 +41,6 @@ export default {
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "black",
-    marginRight: 265,
     shadowColor: "black",
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
@@ -77,6 +76,16 @@ export default {
     style: {
       height: 100,
       paddingBottom: 20,
+    },
+    labelStyle: {
+      fontSize: 20,
+      textAlignVertical: "center",
+      textAlign: "center",
+    },
+  },
+  tabBarHorizontal: {
+    style: {
+      height: 50,
     },
     labelStyle: {
       fontSize: 20,
