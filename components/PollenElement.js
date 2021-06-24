@@ -27,4 +27,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
+  text: {
+    fontSize: 24,
+    fontFamily: "proxima-nova-regular",
+  },
 });

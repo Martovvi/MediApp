@@ -17,4 +17,6 @@ export default {
   borderStyleColor: getBorderColorTheme(
     Appearance.getColorScheme() === "light"
   ),
+  primaryFont: "proxima-nova-alt-thin",
+  buttonFont: "proxima-nova-alt-bold",
 };

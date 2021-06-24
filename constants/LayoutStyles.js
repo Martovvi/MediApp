@@ -74,6 +74,7 @@ export default {
     color: Colors.buttonTextColor,
     marginBottom: 10,
     fontSize: 35,
+    fontFamily: Colors.buttonFont,
   },
   tabBar: {
     style: {

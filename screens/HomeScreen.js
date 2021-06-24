@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleElement: {
     flexDirection: "row",

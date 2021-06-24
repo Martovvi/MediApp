@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     flex: 5,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   textInputText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: Colors.buttonFont,
     color: Colors.buttonTextColor,
   },
   textInput: {
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     borderWidth: 2,
     borderColor: Colors.borderStyleColor,
+    fontFamily: Colors.buttonFont,
     marginTop: 5,
     marginBottom: 25,
     backgroundColor: "white",

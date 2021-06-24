@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     flex: 5,

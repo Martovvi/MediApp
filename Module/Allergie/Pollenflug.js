@@ -155,7 +155,11 @@ export default Pollenflug = (props) => {
               }
               onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
             >
-              <Picker.Item color="grey" label="Region auswählen" value="" />
+              <Picker.Item
+                color="grey"
+                label="Region auswählen"
+                value={selectedRegion}
+              />
               <Picker.Item
                 label="Schleswig-Holstein und Hamburg"
                 value="Schleswig-Holstein und Hamburg"
@@ -243,7 +247,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     flex: 5,

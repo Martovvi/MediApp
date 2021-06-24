@@ -66,14 +66,14 @@ const styles = StyleSheet.create({
   },
   symbolText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
     color: Colors.buttonTextColor,
   },
   text: {
     flex: 4,
     marginLeft: 20,
     fontSize: 30,
-    fontWeight: "bold",
+    fontFamily: Colors.buttonFont,
     color: Colors.buttonTextColor,
   },
 });

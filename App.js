@@ -1,18 +1,11 @@
-import {
-  BalsamiqSans_400Regular,
-  useFonts,
-} from "@expo-google-fonts/balsamiq-sans";
 import React, { useEffect, useState } from "react";
-import {
-  SourceSansPro_400Regular_Italic,
-  SourceSansPro_700Bold,
-} from "@expo-google-fonts/source-sans-pro";
 import { clear, getData } from "./Data/AppStorage";
 
 import AppLoading from "expo-app-loading";
 import { AppearanceProvider } from "react-native-appearance";
 import MainNavigator from "./navigation/MainNavigator";
 import { ModulListContext } from "./Data/Module";
+import { useFonts } from "expo-font";
 
 export default function App() {
   //const [homeModule, setHomeModule] = useState(DefaultModul);
@@ -33,9 +26,14 @@ export default function App() {
   }, []);
 
   let [fontsLoaded] = useFonts({
-    BalsamiqSans_400Regular,
-    SourceSansPro_400Regular_Italic,
-    SourceSansPro_700Bold,
+    "proxima-nova-alt-bold": require("./assets/fonts/Proxima-Nova-Alt-Bold.otf"),
+    "proxima-nova-alt-light": require("./assets/fonts/Proxima-Nova-Alt-Light.otf"),
+    "proxima-nova-alt-thin": require("./assets/fonts/Proxima-Nova-Alt-Thin.otf"),
+    "proxima-nova-black": require("./assets/fonts/Proxima-Nova-Black.otf"),
+    "proxima-nova-bold": require("./assets/fonts/Proxima-Nova-Bold.otf"),
+    "proxima-nova-extrabold": require("./assets/fonts/Proxima-Nova-Extrabold.otf"),
+    "proxima-nova-regular": require("./assets/fonts/Proxima-Nova-Regular.otf"),
+    "proxima-nova-thin": require("./assets/fonts/Proxima-Nova-Thin.otf"),
   });
 
   if (!fontsLoaded) {

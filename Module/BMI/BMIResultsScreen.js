@@ -5,6 +5,8 @@ import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 import { evaluateBMI } from "./BMI";
+import { getButtonTextColorTheme } from "../../constants/Themes";
+import { greaterThan } from "react-native-reanimated";
 
 export default BMIResultsScreen = (props) => {
   return (
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     flex: 5,
@@ -58,7 +60,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     borderRadius: 15,
-    backgroundColor: Colors.lightBackground,
   },
   resultContainer: {
     marginTop: 20,
@@ -68,17 +69,19 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: Colors.lightBackground,
   },
   result: {
     fontSize: 75,
-    fontWeight: "bold",
+    fontFamily: Colors.buttonFont,
+    color: Colors.buttonTextColor,
   },
   resultText: {
     marginTop: 40,
     fontSize: 28,
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
     width: "80%",
     textAlign: "center",
-    color: Colors.buttonTextColor,
+    color: "black",
   },
 });
