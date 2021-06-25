@@ -22,7 +22,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "test.medi.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
