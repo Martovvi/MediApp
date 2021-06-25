@@ -20,9 +20,9 @@ export default {
     marginBottom: 15,
     borderColor: "black",
     borderWidth: 2,
+    borderRadius: 15,
     alignItems: "center",
     flexDirection: "column",
-    borderRadius: 15,
   },
   bottomContainer: {
     flex: 0.5,

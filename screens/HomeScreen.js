@@ -35,19 +35,6 @@ const styles = StyleSheet.create({
   middleContainer: {
     backgroundColor: Colors.lightBackground,
   },
-  middleElement: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    backgroundColor: Colors.accent,
-    padding: 10,
-    borderRadius: 15,
-    borderColor: "black",
-    borderWidth: 2,
-    width: "90%",
-    marginTop: 15,
-    marginBottom: 10,
-  },
   symbolElement: {
     padding: 15,
     borderRadius: 10,

@@ -58,20 +58,17 @@ export default ModulListScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={[LayoutStyles.topContainer, styles.topContainer]}>
+      <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Module </Text>
       </View>
       <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
 
         <ModulList navigation={navigation} selectModulHandler={onSelectModulHandler} />
 
-      </View>
-
-      <View style={[LayoutStyles.bottomContainer, styles.bottomContainer]}>
-
-        <BgButton size={40} text title="Hinzufügen" onClick={onAddModulHandler} />
+        <BgButton text title="Hinzufügen" onClick={onAddModulHandler} />
 
       </View>
+      
     </View>
   );
 };
@@ -89,21 +86,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   middleContainer: {
-    height: '80%',
     backgroundColor: Colors.lightBackground,
-  },
-  middleElement: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    backgroundColor: Colors.accent,
-    padding: 10,
-    borderRadius: 15,
-    borderColor: "black",
-    borderWidth: 2,
-    width: "90%",
-    marginTop: 15,
-    marginBottom: 10,
+    borderWidth: 0,
   },
   symbolElement: {
     padding: 15,
@@ -121,8 +105,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontWeight: "bold",
-  },
-  bottomContainer: {
-    marginVertical: 20,
   },
 });
