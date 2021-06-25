@@ -1,16 +1,26 @@
+import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
-import React from "react";
 
 export default Allergiekalender = (props) => {
+
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+
+  useEffect(() => {
+    return function cleanUp() {
+      ScreenOrientation.unlockAsync();
+    }
+  });
+
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Allergiekalender</Text>
       </View>
-      <View style={styles.middleContainer}>
+      <View style={[LayoutStyles.middleContainer, { borderWidth: 0 }]}>
         <Image
           style={styles.image}
           trans
@@ -32,17 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: "white",
     fontWeight: "bold",
-  },
-  middleContainer: {
-    flex: 5,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
-    marginBottom: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-    borderColor: "black",
   },
   image: {
     flex: 1,

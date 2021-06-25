@@ -1,10 +1,10 @@
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 
 import Allergiekalender from "./Allergiekalender";
 import LayoutStyles from "../../constants/LayoutStyles";
 import Pollenflug from "./Pollenflug";
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const AllergieTab = createBottomTabNavigator();
 

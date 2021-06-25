@@ -20,7 +20,7 @@ export default BMIResultsScreen = (props) => {
         <View style={[styles.topContainer, LayoutStyles.topContainer]}>
           <Text style={styles.appTitle}> BMI Rechner </Text>
         </View>
-        <View style={styles.middleContainer}>
+        <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
           <View style={styles.resultContainer}>
             <Text style={styles.result}>{props.bmi}</Text>
           </View>
@@ -51,14 +51,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   middleContainer: {
-    flex: 5,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
-    marginBottom: 15,
-    alignItems: "center",
-    flexDirection: "column",
-    borderRadius: 15,
+    borderWidth: 0,
   },
   resultContainer: {
     marginTop: 20,

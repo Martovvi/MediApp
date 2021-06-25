@@ -1,18 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Pressable, View, StyleSheet, Text, Alert } from "react-native";
+import { ModulListContext, Modules } from "../Data/Module";
 import Colors from "../constants/Colors";
-import { ModulListContext, Modules, DefaultModul } from "../Data/Module";
 import { storeData } from '../Data/AppStorage';
 
 export default ModulButton = props => {
 
     const [selected, setSelected] = useState(false);
 
-    /*
-    useEffect(() => {
-        console.log("Button neu geladen")
-    }, [longPressed])
-*/
     const [modules, setModules] = useContext(ModulListContext);
 
     const longPressHandler = () => {
@@ -56,17 +51,17 @@ export default ModulButton = props => {
     }, [modules])
 
     const pressHandler = () => {
-        if(props.modulListButton){
+        if (props.modulListButton) {
             props.onPressHandler(props.title);
             setSelected(!selected);
-        }else{
+        } else {
             props.onPressHandler(props.title);
         }
     }
 
     return (
         <Pressable
-            style={({pressed}) => [(selected || pressed) ? styles.touched : styles.untouched, styles.pressable]}
+            style={({ pressed }) => [(selected || pressed) ? styles.touched : styles.untouched, styles.pressable]}
             onPress={pressHandler}
             onLongPress={longPressHandler}
             delayLongPress={700} >

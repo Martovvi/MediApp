@@ -1,14 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-
-import Colors from "../constants/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 export default PollenElement = (props) => {
-  const deletHandler = () => {
-    props.onDelete(props.title);
-  };
-
   return (
     <View style={styles.pollenElement} backgroundColor={props.color}>
       <Text style={styles.text}> {props.title} </Text>

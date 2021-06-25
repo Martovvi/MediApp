@@ -1,21 +1,25 @@
-import {
-  Alert,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Alert, FlatList, SafeAreaView, StyleSheet, Text, View, } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
-import { Picker } from "@react-native-picker/picker";
-import PollenElement from "../../components/PollenElement";
+import PollenElement from "./PollenElement";
+import { Pollen } from "./Pollen";
 
 export default Pollenflug = (props) => {
+
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+
+  useEffect(() => {
+    return function cleanUp() {
+      ScreenOrientation.unlockAsync();
+    }
+  });
+
   const [selectedRegion, setSelectedRegion] = useState();
-  // const [selectedPolle, setSelectedPolle] = useState();
+  const [selectedPolle, setSelectedPolle] = useState(Pollen);
   const [ambrosiaSeverity, setAmbrosiaSeverity] = useState();
   const [beifussSeverity, setBeifussSeverity] = useState();
   const [birkeSeverity, setBirkeSeverity] = useState();
@@ -131,7 +135,7 @@ export default Pollenflug = (props) => {
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> Pollenflug</Text>
       </View>
-      <View style={styles.middleContainer}>
+      <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
             <Picker
@@ -206,7 +210,7 @@ export default Pollenflug = (props) => {
           */}
         </View>
         <View style={styles.flatListContainer}>
-          <FlatList style={styles.flatList} contentContainerStyle={styles.contentContainerStyle} data={DATA} renderItem={renderItem} keyExtractor={item => item.id}/>
+          <FlatList style={styles.flatList} contentContainerStyle={styles.contentContainerStyle} data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
         </View>
       </View>
     </SafeAreaView>
@@ -226,15 +230,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   middleContainer: {
-    flex: 5,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
-    marginBottom: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-    borderColor: "black",
+    borderWidth: 0,
   },
   pickers: {
     justifyContent: "center",

@@ -14,10 +14,8 @@ export default {
   },
   middleContainer: {
     flex: 5,
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
-    marginBottom: 15,
+    marginHorizontal: 25,
+    marginVertical: 15,
     borderColor: "black",
     borderWidth: 2,
     borderRadius: 15,
@@ -28,8 +26,7 @@ export default {
     flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 25,
-    marginRight: 25,
+    marginHorizontal: 25,
     marginBottom: 20,
   },
   returnButton: {
