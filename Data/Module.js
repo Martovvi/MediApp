@@ -11,6 +11,7 @@ export const DefaultModul = [
 
 export const Modules = [
 
+    {id: 1, text: "BMI", icon: "BMI"},
     {id: 2, text: "Pollenflug", icon: "Pollen"},
     {id: 3, text: "Test", icon: "Test"}
 

@@ -6,11 +6,6 @@ import ModulButton from "./ModulButton";
 export default HomeModulList = (props) => {
     const [modules] = useContext(ModulListContext);
 
-    const onDeletHandler = title => {
-        console.log("Geloescht: " + title)
-        //setToDos(toDos => {return toDos.filter(toDo => toDo.id !== key)})
-    }
-
     const navigationHandler = screen => {
         props.navigation.navigate(screen);
     }
@@ -19,7 +14,7 @@ export default HomeModulList = (props) => {
         <View style={styles.scrollView}>
             <ScrollView persistentScrollbar={true} style={{ width: '100%' }}>
                 {modules.homeModules.map(modul => (
-                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={navigationHandler} onDelete={onDeletHandler} />
+                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={navigationHandler} home/>
                 ))}
             </ScrollView>
         </View>

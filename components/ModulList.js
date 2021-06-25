@@ -16,7 +16,7 @@ export default ModulList = (props) =>{
         <View style={styles.scrollView}>
             <ScrollView persistentScrollbar={true} style={{width: '100%'}}>
                 {modules.modulList.map(modul => (
-                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={onSelectHandler} id={modul.id}/>
+                    <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={onSelectHandler} id={modul.id} modulListButton/>
                 ))}
             </ScrollView>
         </View>

@@ -1,24 +1,75 @@
-import React from "react";
-import { Pressable, View, StyleSheet, Text } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Pressable, View, StyleSheet, Text, Alert } from "react-native";
 import Colors from "../constants/Colors";
+import { ModulListContext, Modules, DefaultModul } from "../Data/Module";
+import { storeData } from '../Data/AppStorage';
 
 export default ModulButton = props => {
-    var longPressed = false;
+
+    const [selected, setSelected] = useState(false);
+
+    /*
+    useEffect(() => {
+        console.log("Button neu geladen")
+    }, [longPressed])
+*/
+    const [modules, setModules] = useContext(ModulListContext);
 
     const longPressHandler = () => {
-        longPressed = true;
+        if (props.home) {
+            setSelected(!selected);
+            Alert.alert(
+                "",
+                "Soll das Modul " + props.title + " gelöscht werden?",
+                [
+                    {
+                        text: "Abbrechen",
+                        onPress: () => setSelected(false),
+                        style: 'cancel'
+                    },
+                    {
+                        text: "Ok",
+                        onPress: () => deleteHandler(),
+                    }
+                ]
+            );
+        }
     }
+
+    function deleteHandler() {
+
+        let newHomeModules = modules.homeModules;
+
+        let newModulList = modules.modulList;
+
+        newModulList.push(Modules.find(modul => modul.text === props.title));
+        newHomeModules = newHomeModules.filter(modul => modul.text != props.title);
+
+        setModules(() => ({
+            homeModules: newHomeModules,
+            modulList: newModulList
+        }));
+    }
+
+    useEffect(() => {
+        storeData(modules);
+    }, [modules])
 
     const pressHandler = () => {
-        props.onPressHandler(props.title);
+        if(props.modulListButton){
+            props.onPressHandler(props.title);
+            setSelected(!selected);
+        }else{
+            props.onPressHandler(props.title);
+        }
     }
 
-    return(
-        <Pressable 
-        style={({pressed}) => [(pressed||longPressed) ? styles.touched : styles.untouched, styles.pressable]} 
-        onPress={pressHandler} 
-        onLongPress={longPressHandler} 
-        delayLongPress={700} >
+    return (
+        <Pressable
+            style={({pressed}) => [(selected || pressed) ? styles.touched : styles.untouched, styles.pressable]}
+            onPress={pressHandler}
+            onLongPress={longPressHandler}
+            delayLongPress={700} >
 
             <View style={styles.symbol}>
                 <Text style={styles.symbolText}>{props.icon}</Text>
@@ -32,7 +83,7 @@ export default ModulButton = props => {
 
 const styles = StyleSheet.create({
     pressable: {
-        flex : 1,
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 15,

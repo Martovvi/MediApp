@@ -16,7 +16,7 @@ export const getData = () => {
             if (value != null) {
                 resolve(value);
             } else {
-                resolve(JSON.stringify({ homeModules: DefaultModul, modulList: Modules }));
+                resolve(JSON.stringify({ homeModules: DefaultModul, modulList: Modules.filter(modul => modul.id != 1) }));
             }
         });
     })

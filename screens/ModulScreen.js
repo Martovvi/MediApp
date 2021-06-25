@@ -17,7 +17,6 @@ export default ModulListScreen = ({ navigation }) => {
   useEffect(() => {
     if (selectedModules.length > selectedModulesNumber) {
       selectedModulesNumber++;
-      console.log(selectedModules);
     }
   });
 
@@ -28,17 +27,17 @@ export default ModulListScreen = ({ navigation }) => {
   const onSelectModulHandler = (modul) => {
     setSelectedModules(selectedModules => {
       if (!selectedModules.includes(modul)) {
-        return [...selectedModules, modul]
+        return [...selectedModules, modul];
       }
       else {
-        return [...selectedModules]
+        return selectedModules.filter(modules => modules != modul);
       }
     });
   };
 
   const onAddModulHandler = () => {
     console.log(selectedModules);
-
+    
     let newHomeModules = modules.homeModules;
 
     let newModulList = modules.modulList;
@@ -52,6 +51,8 @@ export default ModulListScreen = ({ navigation }) => {
       homeModules: newHomeModules,
       modulList: newModulList
     }));
+
+    setSelectedModules([]);
   };
 
 
