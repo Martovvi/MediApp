@@ -1,14 +1,14 @@
+import { ModulListContext, Modules } from "../Data/Module";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+
 import BgButton from "../components/BgButton";
 import Colors from "../constants/Colors";
 import LayoutStyles from "../constants/LayoutStyles";
 import ModulList from "../components/ModulList";
-import React, { useEffect, useContext, useState } from "react";
-import { ModulListContext, Modules } from "../Data/Module";
-import { storeData } from '../Data/AppStorage';
+import { storeData } from "../Data/AppStorage";
 
 export default ModulListScreen = ({ navigation }) => {
-
   const [modules, setModules] = useContext(ModulListContext);
 
   const [selectedModules, setSelectedModules] = useState([]);
@@ -22,10 +22,10 @@ export default ModulListScreen = ({ navigation }) => {
 
   useEffect(() => {
     storeData(modules);
-  }, [modules])
+  }, [modules]);
 
   const onSelectModulHandler = (modul) => {
-    setSelectedModules(selectedModules => {
+    setSelectedModules((selectedModules) => {
       if (!selectedModules.includes(modul)) {
         return [...selectedModules, modul];
       }
@@ -42,19 +42,22 @@ export default ModulListScreen = ({ navigation }) => {
 
     let newModulList = modules.modulList;
 
-    selectedModules.forEach(selectedModul => {
-      newHomeModules.push(Modules.find(modul => modul.text === selectedModul));
-      newModulList = newModulList.filter(modul => modul.text != selectedModul);
-    })
+    selectedModules.forEach((selectedModul) => {
+      newHomeModules.push(
+        Modules.find((modul) => modul.text === selectedModul)
+      );
+      newModulList = newModulList.filter(
+        (modul) => modul.text != selectedModul
+      );
+    });
 
     setModules(() => ({
       homeModules: newHomeModules,
-      modulList: newModulList
+      modulList: newModulList,
     }));
 
     setSelectedModules([]);
   };
-
 
   return (
     <View style={styles.container}>
@@ -76,6 +79,7 @@ export default ModulListScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     backgroundColor: Colors.lightBackground,

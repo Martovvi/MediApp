@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import Colors from "../constants/Colors";
-import LayoutStyles from "../constants/LayoutStyles";
 import HomeModulList from "../components/HomeModulList";
 
 
@@ -23,6 +22,7 @@ export default HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     backgroundColor: Colors.lightBackground,

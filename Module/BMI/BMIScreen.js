@@ -60,8 +60,8 @@ export default MainScreen = (props) => {
   };
 
   const onReturnHandler = () => {
-    props.navigation.navigate("Home")
-  }
+    props.navigation.navigate("Home");
+  };
 
   var BottomComponent;
   if(height > 660){
@@ -128,6 +128,7 @@ export default MainScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   textInputContainer: {
     width: "100%",

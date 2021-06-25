@@ -66,14 +66,9 @@ export default ModulButton = props => {
             onLongPress={longPressHandler}
             delayLongPress={700} >
 
-            <View style={styles.symbol}>
-                <Text style={styles.symbolText}>{props.icon}</Text>
-            </View>
-
-            <Text style={styles.text} >{props.title}</Text>
-
-        </Pressable>
-    );
+      <Text style={styles.text}>{props.title}</Text>
+    </Pressable>
+  );
 };
 
 const styles = StyleSheet.create({

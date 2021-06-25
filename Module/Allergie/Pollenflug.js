@@ -33,23 +33,35 @@ export default Pollenflug = (props) => {
     return value == "";
   };
 
-  const pollenHandler = async (region) => {
+  var fetchData;
+
+  useEffect(() => {
     try {
-      let response = await fetch(
-        "https://api.achoo.dev/pollen/region/" + region
-      );
-      response = await response.json();
-      setAmbrosiaSeverity(response[0].pollen[0].today.severity);
-      setBeifussSeverity(response[0].pollen[1].today.severity);
-      setBirkeSeverity(response[0].pollen[2].today.severity);
-      setErleSeverity(response[0].pollen[3].today.severity);
-      setEscheSeverity(response[0].pollen[4].today.severity);
-      setGräserSeverity(response[0].pollen[5].today.severity);
-      setHaselSeverity(response[0].pollen[6].today.severity);
-      setRoggenSeverity(response[0].pollen[7].today.severity);
+      fetch(
+        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          fetchData = data.content;
+          //console.log(data.content);
+        });
     } catch (err) {
       Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
     }
+  });
+
+  const pollenHandler = (region) => {
+    var dataSelectedRegion = fetchData.find(
+      (regions) => regions.region_name === region
+    );
+    setAmbrosiaSeverity(dataSelectedRegion.Pollen.Ambrosia.today);
+    setBeifussSeverity(dataSelectedRegion.Pollen.Beifuss.today);
+    setBirkeSeverity(dataSelectedRegion.Pollen.Birke.today);
+    setErleSeverity(dataSelectedRegion.Pollen.Erle.today);
+    setEscheSeverity(dataSelectedRegion.Pollen.Esche.today);
+    setGräserSeverity(dataSelectedRegion.Pollen.Graeser.today);
+    setHaselSeverity(dataSelectedRegion.Pollen.Hasel.today);
+    setRoggenSeverity(dataSelectedRegion.Pollen.Roggen.today);
   };
 
   const checkSeverity = (value) => {
@@ -74,43 +86,43 @@ export default Pollenflug = (props) => {
       id: "asdfa0b43",
       title: "Ambrosia",
       color: checkSeverity(ambrosiaSeverity),
-      severity: ambrosiaSeverity
+      severity: ambrosiaSeverity,
     },
     {
       id: "gfdhjb1nb",
       title: "Beifuss",
       color: checkSeverity(beifussSeverity),
-      severity: beifussSeverity
+      severity: beifussSeverity,
     },
     {
       id: "t0394jdog",
       title: "Birke",
       color: checkSeverity(birkeSeverity),
-      severity: birkeSeverity
+      severity: birkeSeverity,
     },
     {
       id: "fbkle09cx",
       title: "Erle",
       color: checkSeverity(erleSeverity),
-      severity: erleSeverity
+      severity: erleSeverity,
     },
     {
       id: "904ifdlkp",
       title: "Esche",
       color: checkSeverity(escheSeverity),
-      severity: escheSeverity
+      severity: escheSeverity,
     },
     {
       id: "3828jksdf",
       title: "Gräser",
       color: checkSeverity(gräserSeverity),
-      severity: gräserSeverity
+      severity: gräserSeverity,
     },
     {
       id: "xcvmb89nm",
       title: "Hasel",
       color: checkSeverity(haselSeverity),
-      severity: haselSeverity
+      severity: haselSeverity,
     },
     {
       id: "löäghj0öl",
@@ -118,7 +130,7 @@ export default Pollenflug = (props) => {
       color: checkSeverity(roggenSeverity),
       severity: roggenSeverity,
     },
-  ]
+  ];
 
   const renderItem = ({ item }) => {
     return (
@@ -147,39 +159,43 @@ export default Pollenflug = (props) => {
               }
               onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
             >
-              <Picker.Item color="grey" label="Region auswählen" value="" />
+              <Picker.Item
+                color="grey"
+                label="Region auswählen"
+                value={selectedRegion}
+              />
               <Picker.Item
                 label="Schleswig-Holstein und Hamburg"
-                value="Schleswig_Holstein_und_Hamburg"
+                value="Schleswig-Holstein und Hamburg"
               />
               <Picker.Item
                 label="Baden-Württemberg"
-                value="Baden_Württemberg"
+                value="Baden-Württemberg"
               />
               <Picker.Item label="Thüringen" value="Thüringen" />
-              <Picker.Item label="Sachsen-Anhalt" value="Sachsen_Anhalt" />
+              <Picker.Item label="Sachsen-Anhalt" value="Sachsen-Anhalt" />
               <Picker.Item
                 label="Brandenburg und Berlin"
-                value="Brandenburg_und_Berlin"
+                value="Brandenburg und Berlin "
               />
               <Picker.Item label="Sachsen" value="Sachsen" />
               <Picker.Item
                 label="Rheinland-Pfalz und Saarland"
-                value="Rheinland_Pfalz_und_Saarland"
+                value="Rheinland-Pfalz und Saarland"
               />
               <Picker.Item label="Hessen" value="Hessen" />
               <Picker.Item
                 label="Nordrhein-Westfalen"
-                value="Nordrhein_Westfalen"
+                value="Nordrhein-Westfalen"
               />
               <Picker.Item
                 label="Niedersachsen und Bremen"
-                value="Niedersachsen_und_Bremen"
+                value="Niedersachsen und Bremen"
               />
               <Picker.Item label="Bayern" value="Bayern" />
               <Picker.Item
                 label="Mecklenburg-Vorpommern"
-                value="Mecklenburg_Vorpommern"
+                value="Mecklenburg-Vorpommern "
               />
             </Picker>
           </View>
@@ -210,7 +226,14 @@ export default Pollenflug = (props) => {
           */}
         </View>
         <View style={styles.flatListContainer}>
-          <FlatList style={styles.flatList} contentContainerStyle={styles.contentContainerStyle} data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
+          <FlatList
+            style={styles.flatList}
+            contentContainerStyle={styles.contentContainerStyle}
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            persistentScrollbar={true}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -220,6 +243,7 @@ export default Pollenflug = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.lightBackground,
   },
   topContainer: {
     backgroundColor: Colors.primary,
@@ -227,7 +251,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 45,
     color: "white",
-    fontWeight: "bold",
+    fontFamily: Colors.primaryFont,
   },
   middleContainer: {
     borderWidth: 0,
@@ -262,9 +286,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   flatList: {
-    backgroundColor: "white",
+    backgroundColor: Colors.lightBackground,
     width: "100%",
     borderWidth: 2,
+    borderColor: Colors.borderStyleColor,
   },
   contentContainerStyle: {
     justifyContent: "center",

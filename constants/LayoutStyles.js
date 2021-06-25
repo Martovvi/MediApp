@@ -9,8 +9,9 @@ export default {
     justifyContent: "center",
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-    borderColor: "black",
+    borderColor: Colors.borderStyleColor,
     borderWidth: 2,
+    backgroundColor: Colors.primary,
   },
   middleContainer: {
     flex: 5,

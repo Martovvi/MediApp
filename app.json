@@ -3,6 +3,7 @@
     "name": "MediApp",
     "slug": "MediApp",
     "version": "1.0.0",
+    "userInterfaceStyle": "automatic",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
