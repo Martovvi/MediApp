@@ -1,14 +1,13 @@
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
-import { useDimensions } from '@react-native-community/hooks';
 
 import BMIResultsScreen from "./BMIResultsScreen";
 import BgButton from "../../components/BgButton";
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
+import { useDimensions } from "@react-native-community/hooks";
 
 export default MainScreen = (props) => {
-
   const { height } = useDimensions().window;
 
   const [alter, setAlter] = useState();
@@ -64,16 +63,32 @@ export default MainScreen = (props) => {
   };
 
   var BottomComponent;
-  if(height > 660){
-    BottomComponent= <View style={{flexDirection: 'column', height: '26%', justifyContent: 'space-between'}}>
+  if (height > 660) {
+    BottomComponent = (
+      <View
+        style={{
+          flexDirection: "column",
+          height: "26%",
+          justifyContent: "space-between",
+        }}
+      >
         <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
         <BgButton return onClick={onReturnHandler} />
-      </View>;
-  }else{
-    BottomComponent= <View style={{flexDirection: 'row', width: "80%", justifyContent: 'space-between'}}>
+      </View>
+    );
+  } else {
+    BottomComponent = (
+      <View
+        style={{
+          flexDirection: "row",
+          width: "80%",
+          justifyContent: "space-between",
+        }}
+      >
         <BgButton return onClick={onReturnHandler} />
         <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
-      </View>;
+      </View>
+    );
   }
 
   return (
@@ -81,9 +96,29 @@ export default MainScreen = (props) => {
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
         <Text style={styles.appTitle}> BMI Rechner </Text>
       </View>
-      <View style={[LayoutStyles.middleContainer, {justifyContent: 'flex-start', borderWidth: 0}]}>
-        <View style={height > 660 ? styles.textInputContainer : styles.textInputContainerHoritontal}>
-          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Alter</Text>
+      <View
+        style={[
+          LayoutStyles.middleContainer,
+          { justifyContent: "flex-start", borderWidth: 0 },
+        ]}
+      >
+        <View
+          style={
+            height > 660
+              ? styles.textInputContainer
+              : styles.textInputContainerHoritontal
+          }
+        >
+          <Text
+            style={
+              height > 660
+                ? styles.textInputText
+                : styles.textInputTextHorizontal
+            }
+          >
+            {" "}
+            Alter
+          </Text>
           <TextInput
             style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
@@ -92,7 +127,16 @@ export default MainScreen = (props) => {
             onChangeText={alterHandler}
             clearTextOnFocus={true}
           />
-          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Körpergröße</Text>
+          <Text
+            style={
+              height > 660
+                ? styles.textInputText
+                : styles.textInputTextHorizontal
+            }
+          >
+            {" "}
+            Körpergröße
+          </Text>
           <TextInput
             style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
@@ -101,7 +145,16 @@ export default MainScreen = (props) => {
             onChangeText={körpergrößeHandler}
             clearTextOnFocus={true}
           />
-          <Text style={height > 660 ? styles.textInputText : styles.textInputTextHorizontal}> Gewicht</Text>
+          <Text
+            style={
+              height > 660
+                ? styles.textInputText
+                : styles.textInputTextHorizontal
+            }
+          >
+            {" "}
+            Gewicht
+          </Text>
           <TextInput
             style={height > 660 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
@@ -112,14 +165,13 @@ export default MainScreen = (props) => {
           />
         </View>
         {BottomComponent}
-        
+
         <BMIResultsScreen
           visible={showBMIResults}
           onCancelModal={cancelModalHandler}
           alter={alter}
           bmi={bmi}
         />
-       
       </View>
     </View>
   );
@@ -141,8 +193,8 @@ const styles = StyleSheet.create({
   textInputContainer: {
     width: "100%",
     marginBottom: 45,
-    height: '65%',
-    justifyContent: 'space-evenly',
+    height: "65%",
+    justifyContent: "space-evenly",
   },
   textInputContainerHoritontal: {
     width: "100%",
@@ -152,6 +204,7 @@ const styles = StyleSheet.create({
   textInputText: {
     fontSize: 25,
     fontWeight: "bold",
+    color: Colors.buttonTextColor,
   },
   textInputTextHorizontal: {
     fontSize: 23,
