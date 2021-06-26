@@ -1,15 +1,22 @@
+import * as ScreenOrientation from "expo-screen-orientation";
+
+import {
+  Alert,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { Pollen, Regions } from "./Pollen";
 import React, { useEffect, useState } from "react";
-import { Alert, FlatList, SafeAreaView, StyleSheet, Text, View, } from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import * as ScreenOrientation from 'expo-screen-orientation';
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
+import { Picker } from "@react-native-picker/picker";
 import PollenElement from "./PollenElement";
-import { Pollen, Regions } from "./Pollen";
 
 export default Pollenflug = (props) => {
-
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
   useEffect(() => {
@@ -22,7 +29,9 @@ export default Pollenflug = (props) => {
 
   useEffect(() => {
     try {
-      fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
+      fetch(
+        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
+      )
         .then((response) => response.json())
         .then((data) => {
           fetchData = data.content;
@@ -34,22 +43,14 @@ export default Pollenflug = (props) => {
 
   const pollenHandler = (region) => {
 
-    if (region != 'Placeholder') {
-      
-      var dataSelectedRegion = fetchData.find(
-        (regions) => regions.region_name === region
-      );
-      dataSelectedRegion = dataSelectedRegion.Pollen;
-
-      setPollen(pollen => pollen.map(polle => {
-        return { id: polle.id, name: polle.name, severity: dataSelectedRegion[polle.name].today };
-      }));
-    }
+    setPollen(pollen => pollen.map(polle => {
+      return { id: polle.id , name: polle.name, severity: dataSelectedRegion[polle.name].today };
+    }));
   };
 
   const renderItem = ({ item }) => {
     return (
-      <PollenElement name={item.name} severity={item.severity} />
+      <PollenElement name={item.name} severity={item.severity}/>
     );
   };
 
@@ -62,7 +63,8 @@ export default Pollenflug = (props) => {
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
             <Picker
-              style={styles.pickerStyle}
+              selectedValue={selectedRegion}
+              style={isPlaceholder(selectedRegion) ? styles.placeholder : styles.pickerStyle}
               onValueChange={(itemValue) => pollenHandler(itemValue)}
             >
               <Picker.Item
@@ -71,9 +73,8 @@ export default Pollenflug = (props) => {
                 value="Placeholder"
               />
               {Regions.map(region => (
-                <Picker.Item key={region.name} label={region.name} value={region.name} />
+                <Picker.Item key={region.name} label={region.name} value={region.name}/>
               ))}
-
             </Picker>
           </View>
         </View>
@@ -143,29 +144,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-/*
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={selectedPolle}
-              style={
-                isPlaceholder(selectedPolle)
-                  ? styles.placeholder
-                  : styles.pickerStyle
-              }
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedPolle(itemValue)
-              }
-            >
-              <Picker.Item color="grey" label="Pollen auswählen" value="" />
-              <Picker.Item label="Ambrosia" value="Ambrosia" />
-              <Picker.Item label="Beifuss" value="Beifuss" />
-              <Picker.Item label="Birke" value="Birke" />
-              <Picker.Item label="Erle" value="Erle" />
-              <Picker.Item label="Esche" value="Esche" />
-              <Picker.Item label="Gräser" value="Gräser" />
-              <Picker.Item label="Hasel" value="Hasel" />
-              <Picker.Item label="Roggen" value="Roggen" />
-            </Picker>
-          </View>
-          */

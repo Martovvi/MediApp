@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 export default PollenElement = (props) => {
-
   var color = ceckSeverity(props.severity);
 
   return (
@@ -17,7 +16,7 @@ function ceckSeverity(value) {
     case "0":
       return "lime";
     case "0-1":
-      return "darkgreen";
+      return "green";
     case "1":
       return "yellow";
     case "1-2":
@@ -29,11 +28,10 @@ function ceckSeverity(value) {
     case "3":
       return "darkred";
     default:
-      console.log("Fehler bei: " +value+ " vom Typ "+ typeof(value));
+      console.log("Fehler bei: " + value + " vom Typ " + typeof value);
       return "lime";
   }
 }
-
 
 const styles = StyleSheet.create({
   pollenElement: {
