@@ -13,15 +13,10 @@ export default Pollenflug = (props) => {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
   useEffect(() => {
-    return function cleanUp() {ScreenOrientation.unlockAsync();}
+    return function cleanUp() { ScreenOrientation.unlockAsync(); }
   });
 
-  const [selectedRegion, setSelectedRegion] = useState();
   const [pollen, setPollen] = useState(Pollen);
-
-  const isPlaceholder = (value) => {
-    return value == "";
-  };
 
   var fetchData;
 
@@ -38,19 +33,23 @@ export default Pollenflug = (props) => {
   });
 
   const pollenHandler = (region) => {
-    var dataSelectedRegion = fetchData.find(
-      (regions) => regions.region_name === region
-    );
-    dataSelectedRegion = dataSelectedRegion.Pollen;
 
-    setPollen(pollen => pollen.map(polle => {
-      return { id: polle.id , name: polle.name, severity: dataSelectedRegion[polle.name].today };
-    }));
+    if (region != 'Placeholder') {
+      
+      var dataSelectedRegion = fetchData.find(
+        (regions) => regions.region_name === region
+      );
+      dataSelectedRegion = dataSelectedRegion.Pollen;
+
+      setPollen(pollen => pollen.map(polle => {
+        return { id: polle.id, name: polle.name, severity: dataSelectedRegion[polle.name].today };
+      }));
+    }
   };
 
   const renderItem = ({ item }) => {
     return (
-      <PollenElement name={item.name} severity={item.severity}/>
+      <PollenElement name={item.name} severity={item.severity} />
     );
   };
 
@@ -63,17 +62,16 @@ export default Pollenflug = (props) => {
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
             <Picker
-              selectedValue={selectedRegion}
-              style={isPlaceholder(selectedRegion) ? styles.placeholder : styles.pickerStyle}
+              style={styles.pickerStyle}
               onValueChange={(itemValue) => pollenHandler(itemValue)}
             >
               <Picker.Item
                 color="grey"
                 label="Region auswählen"
-                value={selectedRegion}
+                value="Placeholder"
               />
               {Regions.map(region => (
-                <Picker.Item key={region.name} label={region.name} value={region.name}/>
+                <Picker.Item key={region.name} label={region.name} value={region.name} />
               ))}
 
             </Picker>
@@ -125,11 +123,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     color: "black",
-  },
-  placeholder: {
-    height: 50,
-    width: "100%",
-    color: "grey",
   },
   flatListContainer: {
     justifyContent: "center",
