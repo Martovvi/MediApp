@@ -6,28 +6,18 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
 import PollenElement from "./PollenElement";
-import { Pollen } from "./Pollen";
+import { Pollen, Regions } from "./Pollen";
 
 export default Pollenflug = (props) => {
 
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
   useEffect(() => {
-    return function cleanUp() {
-      ScreenOrientation.unlockAsync();
-    }
+    return function cleanUp() {ScreenOrientation.unlockAsync();}
   });
 
   const [selectedRegion, setSelectedRegion] = useState();
-  const [selectedPolle, setSelectedPolle] = useState(Pollen);
-  const [ambrosiaSeverity, setAmbrosiaSeverity] = useState();
-  const [beifussSeverity, setBeifussSeverity] = useState();
-  const [birkeSeverity, setBirkeSeverity] = useState();
-  const [erleSeverity, setErleSeverity] = useState();
-  const [escheSeverity, setEscheSeverity] = useState();
-  const [gräserSeverity, setGräserSeverity] = useState();
-  const [haselSeverity, setHaselSeverity] = useState();
-  const [roggenSeverity, setRoggenSeverity] = useState();
+  const [pollen, setPollen] = useState(Pollen);
 
   const isPlaceholder = (value) => {
     return value == "";
@@ -37,13 +27,10 @@ export default Pollenflug = (props) => {
 
   useEffect(() => {
     try {
-      fetch(
-        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
-      )
+      fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
         .then((response) => response.json())
         .then((data) => {
           fetchData = data.content;
-          //console.log(data.content);
         });
     } catch (err) {
       Alert.alert("Something went wrong!", err.message, [{ title: "Ok" }]);
@@ -54,91 +41,16 @@ export default Pollenflug = (props) => {
     var dataSelectedRegion = fetchData.find(
       (regions) => regions.region_name === region
     );
-    setAmbrosiaSeverity(dataSelectedRegion.Pollen.Ambrosia.today);
-    setBeifussSeverity(dataSelectedRegion.Pollen.Beifuss.today);
-    setBirkeSeverity(dataSelectedRegion.Pollen.Birke.today);
-    setErleSeverity(dataSelectedRegion.Pollen.Erle.today);
-    setEscheSeverity(dataSelectedRegion.Pollen.Esche.today);
-    setGräserSeverity(dataSelectedRegion.Pollen.Graeser.today);
-    setHaselSeverity(dataSelectedRegion.Pollen.Hasel.today);
-    setRoggenSeverity(dataSelectedRegion.Pollen.Roggen.today);
-  };
+    dataSelectedRegion = dataSelectedRegion.Pollen;
 
-  const checkSeverity = (value) => {
-    if (value == "3") {
-      return "red";
-    }
-    if (value == "2-3") {
-      return "orange";
-    }
-    if (value == "1-2") {
-      return "yellow";
-    }
-    if (value == "0") {
-      return "lime";
-    } else {
-      return "lime";
-    }
+    setPollen(pollen => pollen.map(polle => {
+      return { id: polle.id , name: polle.name, severity: dataSelectedRegion[polle.name].today };
+    }));
   };
-
-  const DATA = [
-    {
-      id: "asdfa0b43",
-      title: "Ambrosia",
-      color: checkSeverity(ambrosiaSeverity),
-      severity: ambrosiaSeverity,
-    },
-    {
-      id: "gfdhjb1nb",
-      title: "Beifuss",
-      color: checkSeverity(beifussSeverity),
-      severity: beifussSeverity,
-    },
-    {
-      id: "t0394jdog",
-      title: "Birke",
-      color: checkSeverity(birkeSeverity),
-      severity: birkeSeverity,
-    },
-    {
-      id: "fbkle09cx",
-      title: "Erle",
-      color: checkSeverity(erleSeverity),
-      severity: erleSeverity,
-    },
-    {
-      id: "904ifdlkp",
-      title: "Esche",
-      color: checkSeverity(escheSeverity),
-      severity: escheSeverity,
-    },
-    {
-      id: "3828jksdf",
-      title: "Gräser",
-      color: checkSeverity(gräserSeverity),
-      severity: gräserSeverity,
-    },
-    {
-      id: "xcvmb89nm",
-      title: "Hasel",
-      color: checkSeverity(haselSeverity),
-      severity: haselSeverity,
-    },
-    {
-      id: "löäghj0öl",
-      title: "Roggen",
-      color: checkSeverity(roggenSeverity),
-      severity: roggenSeverity,
-    },
-  ];
 
   const renderItem = ({ item }) => {
     return (
-      <PollenElement
-        title={item.title}
-        color={item.color}
-        severity={item.severity}
-      />
+      <PollenElement name={item.name} severity={item.severity}/>
     );
   };
 
@@ -152,84 +64,26 @@ export default Pollenflug = (props) => {
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedRegion}
-              style={
-                isPlaceholder(selectedRegion)
-                  ? styles.placeholder
-                  : styles.pickerStyle
-              }
-              onValueChange={(itemValue, itemIndex) => pollenHandler(itemValue)}
+              style={isPlaceholder(selectedRegion) ? styles.placeholder : styles.pickerStyle}
+              onValueChange={(itemValue) => pollenHandler(itemValue)}
             >
               <Picker.Item
                 color="grey"
                 label="Region auswählen"
                 value={selectedRegion}
               />
-              <Picker.Item
-                label="Schleswig-Holstein und Hamburg"
-                value="Schleswig-Holstein und Hamburg"
-              />
-              <Picker.Item
-                label="Baden-Württemberg"
-                value="Baden-Württemberg"
-              />
-              <Picker.Item label="Thüringen" value="Thüringen" />
-              <Picker.Item label="Sachsen-Anhalt" value="Sachsen-Anhalt" />
-              <Picker.Item
-                label="Brandenburg und Berlin"
-                value="Brandenburg und Berlin "
-              />
-              <Picker.Item label="Sachsen" value="Sachsen" />
-              <Picker.Item
-                label="Rheinland-Pfalz und Saarland"
-                value="Rheinland-Pfalz und Saarland"
-              />
-              <Picker.Item label="Hessen" value="Hessen" />
-              <Picker.Item
-                label="Nordrhein-Westfalen"
-                value="Nordrhein-Westfalen"
-              />
-              <Picker.Item
-                label="Niedersachsen und Bremen"
-                value="Niedersachsen und Bremen"
-              />
-              <Picker.Item label="Bayern" value="Bayern" />
-              <Picker.Item
-                label="Mecklenburg-Vorpommern"
-                value="Mecklenburg-Vorpommern "
-              />
+              {Regions.map(region => (
+                <Picker.Item key={region.name} label={region.name} value={region.name}/>
+              ))}
+
             </Picker>
           </View>
-          {/*
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={selectedPolle}
-              style={
-                isPlaceholder(selectedPolle)
-                  ? styles.placeholder
-                  : styles.pickerStyle
-              }
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedPolle(itemValue)
-              }
-            >
-              <Picker.Item color="grey" label="Pollen auswählen" value="" />
-              <Picker.Item label="Ambrosia" value="Ambrosia" />
-              <Picker.Item label="Beifuss" value="Beifuss" />
-              <Picker.Item label="Birke" value="Birke" />
-              <Picker.Item label="Erle" value="Erle" />
-              <Picker.Item label="Esche" value="Esche" />
-              <Picker.Item label="Gräser" value="Gräser" />
-              <Picker.Item label="Hasel" value="Hasel" />
-              <Picker.Item label="Roggen" value="Roggen" />
-            </Picker>
-          </View>
-          */}
         </View>
         <View style={styles.flatListContainer}>
           <FlatList
             style={styles.flatList}
             contentContainerStyle={styles.contentContainerStyle}
-            data={DATA}
+            data={pollen}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
             persistentScrollbar={true}
@@ -296,3 +150,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+/*
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectedPolle}
+              style={
+                isPlaceholder(selectedPolle)
+                  ? styles.placeholder
+                  : styles.pickerStyle
+              }
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedPolle(itemValue)
+              }
+            >
+              <Picker.Item color="grey" label="Pollen auswählen" value="" />
+              <Picker.Item label="Ambrosia" value="Ambrosia" />
+              <Picker.Item label="Beifuss" value="Beifuss" />
+              <Picker.Item label="Birke" value="Birke" />
+              <Picker.Item label="Erle" value="Erle" />
+              <Picker.Item label="Esche" value="Esche" />
+              <Picker.Item label="Gräser" value="Gräser" />
+              <Picker.Item label="Hasel" value="Hasel" />
+              <Picker.Item label="Roggen" value="Roggen" />
+            </Picker>
+          </View>
+          */

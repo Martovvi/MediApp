@@ -3,6 +3,7 @@ import React from "react";
 
 import Colors from "../constants/Colors";
 import HomeModulList from "../components/HomeModulList";
+import LayoutStyles from "../constants/LayoutStyles";
 
 
 export default HomeScreen = ({ navigation }) => {
