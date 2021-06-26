@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   symbolText: {
     fontSize: 20,
     fontWeight: "bold",
-    backgroundColor: Colors.lightBackground,
+    color: Colors.buttonTextColor,
   },
   text: {
     flex: 4,
