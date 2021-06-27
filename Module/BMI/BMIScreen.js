@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   textInputText: {
     fontSize: 25,
     fontWeight: "bold",
-    color: Colors.buttonTextColor,
+    color: Colors.textColor,
   },
   textInputTextHorizontal: {
     fontSize: 23,

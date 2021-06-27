@@ -1,7 +1,7 @@
 import {
   getBackgroundTheme,
   getBorderColorTheme,
-  getButtonTextColorTheme,
+  textColorTheme,
 } from "../constants/Themes";
 
 import { Appearance } from "react-native-appearance";
@@ -11,9 +11,7 @@ export default {
   primary: "#bf2e2e",
   accent: "#c3ea9b",
   lightBackground: getBackgroundTheme(Appearance.getColorScheme() === "light"),
-  buttonTextColor: getButtonTextColorTheme(
-    Appearance.getColorScheme() === "light"
-  ),
+  textColor: textColorTheme(Appearance.getColorScheme() === "light"),
   borderStyleColor: getBorderColorTheme(
     Appearance.getColorScheme() === "light"
   ),

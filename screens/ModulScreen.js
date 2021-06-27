@@ -28,15 +28,13 @@ export default ModulListScreen = ({ navigation }) => {
     setSelectedModules((selectedModules) => {
       if (!selectedModules.includes(modul)) {
         return [...selectedModules, modul];
-      }
-      else {
-        return selectedModules.filter(modules => modules != modul);
+      } else {
+        return selectedModules.filter((modules) => modules != modul);
       }
     });
   };
 
   const onAddModulHandler = () => {
-    
     let newHomeModules = modules.homeModules;
     let newModulList = modules.modulList;
 
@@ -44,7 +42,9 @@ export default ModulListScreen = ({ navigation }) => {
       newHomeModules.push(
         Modules.find((modul) => modul.text === selectedModul)
       );
-      newModulList = newModulList.filter((modul) => modul.text != selectedModul);
+      newModulList = newModulList.filter(
+        (modul) => modul.text != selectedModul
+      );
     });
 
     setModules(() => ({
@@ -62,13 +62,13 @@ export default ModulListScreen = ({ navigation }) => {
         <Text style={styles.appTitle}> Module </Text>
       </View>
       <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
-
-        <ModulList navigation={navigation} selectModulHandler={onSelectModulHandler} />
+        <ModulList
+          navigation={navigation}
+          selectModulHandler={onSelectModulHandler}
+        />
 
         <BgButton text title="Hinzufügen" onClick={onAddModulHandler} />
-
       </View>
-      
     </View>
   );
 };

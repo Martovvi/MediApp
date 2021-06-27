@@ -6,7 +6,6 @@ import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 import { evaluateBMI } from "./BMI";
 
-
 export default BMIResultsScreen = (props) => {
   return (
     <View style={styles.container}>
@@ -38,8 +37,7 @@ export default BMIResultsScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   topContainer: {
     backgroundColor: Colors.primary,
   },
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
   result: {
     fontSize: 75,
     fontFamily: Colors.buttonFont,
-    color: Colors.buttonTextColor,
+    color: Colors.textColor,
   },
   resultText: {
     marginTop: 40,

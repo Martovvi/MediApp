@@ -6,6 +6,6 @@ export const getBorderColorTheme = (isLight) => {
   return isLight ? "black" : "#1b1b1b";
 };
 
-export const getButtonTextColorTheme = (isLight) => {
+export const textColorTheme = (isLight) => {
   return isLight ? "black" : "white";
 };

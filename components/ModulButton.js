@@ -68,13 +68,7 @@ export default ModulButton = (props) => {
       delayLongPress={700}
     >
       <View style={styles.symbol}>
-        {
-          <Ionicons
-            name={props.icon}
-            size={30}
-            color={Colors.buttonTextColor}
-          />
-        }
+        {<Ionicons name={props.icon} size={30} color={Colors.textColor} />}
       </View>
       <Text style={styles.text}>{props.title}</Text>
     </Pressable>
@@ -115,13 +109,13 @@ const styles = StyleSheet.create({
   symbolText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: Colors.buttonTextColor,
+    color: Colors.textColor,
   },
   text: {
     flex: 4,
     marginLeft: 20,
     fontSize: 30,
     fontWeight: "bold",
-    color: Colors.buttonTextColor,
+    color: Colors.textColor,
   },
 });
