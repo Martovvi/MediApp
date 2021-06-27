@@ -57,19 +57,12 @@ export default ModulButton = (props) => {
     }
   };
 
-  return (
-    <Pressable
-      style={({ pressed }) => [
-        selected || pressed ? styles.touched : styles.untouched,
-        styles.pressable,
-      ]}
-      onPress={pressHandler}
-      onLongPress={longPressHandler}
-      delayLongPress={700}
-    >
-      <View style={styles.symbol}>
-        {<Ionicons name={props.icon} size={30} color="black"/>}
-      </View>
+    return (
+        <Pressable
+            style={({ pressed }) => [(selected || pressed) ? styles.touched : styles.untouched, styles.pressable]}
+            onPress={pressHandler}
+            onLongPress={longPressHandler}
+            delayLongPress={700} >
 
       <Text style={styles.text}>{props.title}</Text>
     </Pressable>
