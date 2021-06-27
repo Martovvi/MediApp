@@ -1,9 +1,9 @@
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { ModulListContext, Modules } from "../Data/Module";
 import React, { useContext, useEffect, useState } from "react";
-import { Ionicons } from '@expo/vector-icons';
 
 import Colors from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 import { storeData } from "../Data/AppStorage";
 
 export default ModulButton = (props) => {
