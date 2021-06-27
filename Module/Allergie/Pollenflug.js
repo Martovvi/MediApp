@@ -1,13 +1,5 @@
 import * as ScreenOrientation from "expo-screen-orientation";
-
-import {
-  Alert,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, FlatList, SafeAreaView, StyleSheet, Text, View, } from "react-native";
 import { Pollen, Regions } from "./Pollen";
 import React, { useEffect, useState } from "react";
 
@@ -29,9 +21,7 @@ export default Pollenflug = (props) => {
 
   useEffect(() => {
     try {
-      fetch(
-        "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
-      )
+      fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
         .then((response) => response.json())
         .then((data) => {
           fetchData = data.content;
@@ -43,14 +33,23 @@ export default Pollenflug = (props) => {
 
   const pollenHandler = (region) => {
 
-    setPollen(pollen => pollen.map(polle => {
-      return { id: polle.id , name: polle.name, severity: dataSelectedRegion[polle.name].today };
-    }));
+    if(region != 'Placeholder'){
+
+      var dataSelectedRegion = fetchData.find(
+        (regions) => regions.region_name === region
+      );
+
+      dataSelectedRegion = dataSelectedRegion.Pollen;
+
+      setPollen(pollen => pollen.map(polle => {
+        return { id: polle.id, name: polle.name, severity: dataSelectedRegion[polle.name].today };
+      }));
+    }
   };
 
   const renderItem = ({ item }) => {
     return (
-      <PollenElement name={item.name} severity={item.severity}/>
+      <PollenElement name={item.name} severity={item.severity} />
     );
   };
 
@@ -63,8 +62,7 @@ export default Pollenflug = (props) => {
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
             <Picker
-              selectedValue={selectedRegion}
-              style={isPlaceholder(selectedRegion) ? styles.placeholder : styles.pickerStyle}
+              style={styles.pickerStyle}
               onValueChange={(itemValue) => pollenHandler(itemValue)}
             >
               <Picker.Item
@@ -73,7 +71,7 @@ export default Pollenflug = (props) => {
                 value="Placeholder"
               />
               {Regions.map(region => (
-                <Picker.Item key={region.name} label={region.name} value={region.name}/>
+                <Picker.Item key={region.name} label={region.name} value={region.name} />
               ))}
             </Picker>
           </View>

@@ -15,7 +15,7 @@ export default function App() {
   /*
   Folgendes Objekt ist zum Debuggen.
   */
-  clear();
+  //clear();
 
   useEffect(() => {
     getData()

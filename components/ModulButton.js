@@ -63,7 +63,9 @@ export default ModulButton = (props) => {
             onPress={pressHandler}
             onLongPress={longPressHandler}
             delayLongPress={700} >
-
+      <View style={styles.symbol}>
+        {<Ionicons name={props.icon} size={30} color="black"/>}
+      </View>
       <Text style={styles.text}>{props.title}</Text>
     </Pressable>
   );
