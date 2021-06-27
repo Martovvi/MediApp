@@ -63,7 +63,8 @@ export default Pollenflug = (props) => {
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
             <Picker
-              style={styles.pickerStyle}
+              selectedValue={selectedRegion}
+              style={isPlaceholder(selectedRegion) ? styles.placeholder : styles.pickerStyle}
               onValueChange={(itemValue) => pollenHandler(itemValue)}
             >
               <Picker.Item
