@@ -1,6 +1,7 @@
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { ModulListContext, Modules } from "../Data/Module";
 import React, { useContext, useEffect, useState } from "react";
+import { Ionicons } from '@expo/vector-icons';
 
 import Colors from "../constants/Colors";
 import { storeData } from "../Data/AppStorage";
@@ -67,7 +68,7 @@ export default ModulButton = (props) => {
       delayLongPress={700}
     >
       <View style={styles.symbol}>
-        <Text style={styles.symbolText}>{props.icon}</Text>
+        {<Ionicons name={props.icon} size={30} color="black"/>}
       </View>
 
       <Text style={styles.text}>{props.title}</Text>
