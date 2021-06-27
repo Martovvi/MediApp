@@ -1,6 +1,5 @@
-import React from 'react';
+
 import { createContext } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 
 export const ModulListContext = createContext({});
 
