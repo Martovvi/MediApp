@@ -3,6 +3,7 @@
 ![MadeFor](https://img.shields.io/badge/Made%20for-VSCode-blue)
 ![GitHub forks](https://img.shields.io/github/forks/Martovvi/MediApp?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Martovvi/MediApp?style=social)
+![GitHub all releases](https://img.shields.io/github/downloads/Martovvi/mediapp/total)
 
 Medi App is a modular health &amp; nutrition app that helps the user with medical matters.
 
