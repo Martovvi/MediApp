@@ -36,19 +36,15 @@ export default ModulListScreen = ({ navigation }) => {
   };
 
   const onAddModulHandler = () => {
-    console.log(selectedModules);
     
     let newHomeModules = modules.homeModules;
-
     let newModulList = modules.modulList;
 
     selectedModules.forEach((selectedModul) => {
       newHomeModules.push(
         Modules.find((modul) => modul.text === selectedModul)
       );
-      newModulList = newModulList.filter(
-        (modul) => modul.text != selectedModul
-      );
+      newModulList = newModulList.filter((modul) => modul.text != selectedModul);
     });
 
     setModules(() => ({
@@ -56,6 +52,7 @@ export default ModulListScreen = ({ navigation }) => {
       modulList: newModulList,
     }));
 
+    //Leeren des Arrays für eine erneute Verwendung
     setSelectedModules([]);
   };
 

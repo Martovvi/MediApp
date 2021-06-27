@@ -5,8 +5,7 @@ import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
 import React from "react";
 import { evaluateBMI } from "./BMI";
-import { getButtonTextColorTheme } from "../../constants/Themes";
-import { greaterThan } from "react-native-reanimated";
+
 
 export default BMIResultsScreen = (props) => {
   return (
