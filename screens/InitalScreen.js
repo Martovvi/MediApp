@@ -16,11 +16,12 @@ export default InitalScreen = () => {
       <Text
         style={{
           fontFamily: Colors.primaryFont,
+          color: 'white',
           fontSize: 42,
           textAlign: "center",
         }}
       >
-        Medi App!{"\n\n"}Willkommen
+        Medi App{"\n\n"}Willkommen
       </Text>
     </View>
   );
