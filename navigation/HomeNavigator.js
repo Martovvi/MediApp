@@ -27,7 +27,7 @@ export default HomeNavigator = () => {
                     return <FontAwesome name={iconName} size={size+5} color={color} />;
                 }
             }
-        })} tabBarOptions={height > 666 ? LayoutStyles.tabBar : LayoutStyles.tabBarHorizontal}
+        })} tabBarOptions={height > 500 ? LayoutStyles.tabBar : LayoutStyles.tabBarHorizontal}
             initialRouteName="Start">
 
             <Tab.Screen name="Start" component={HomeScreen}/>

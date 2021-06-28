@@ -63,7 +63,7 @@ export default MainScreen = (props) => {
   };
 
   var BottomComponent;
-  if (height > 660) {
+  if (height > 500) {
     BottomComponent = (
       <View
         style={{
@@ -104,14 +104,14 @@ export default MainScreen = (props) => {
       >
         <View
           style={
-            height > 660
+            height > 500
               ? styles.textInputContainer
               : styles.textInputContainerHoritontal
           }
         >
           <Text
             style={
-              height > 660
+              height > 500
                 ? styles.textInputText
                 : styles.textInputTextHorizontal
             }
@@ -120,7 +120,7 @@ export default MainScreen = (props) => {
             Alter
           </Text>
           <TextInput
-            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
+            style={height > 500 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Alter"
             value={alter}
@@ -129,7 +129,7 @@ export default MainScreen = (props) => {
           />
           <Text
             style={
-              height > 660
+              height > 500
                 ? styles.textInputText
                 : styles.textInputTextHorizontal
             }
@@ -138,7 +138,7 @@ export default MainScreen = (props) => {
             Körpergröße
           </Text>
           <TextInput
-            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
+            style={height > 500 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Körpergröße (cm)"
             value={körpergröße}
@@ -147,7 +147,7 @@ export default MainScreen = (props) => {
           />
           <Text
             style={
-              height > 660
+              height > 500
                 ? styles.textInputText
                 : styles.textInputTextHorizontal
             }
@@ -156,7 +156,7 @@ export default MainScreen = (props) => {
             Gewicht
           </Text>
           <TextInput
-            style={height > 660 ? styles.textInput : styles.textInputHorizontal}
+            style={height > 500 ? styles.textInput : styles.textInputHorizontal}
             keyboardType="number-pad"
             placeholder="Gewicht (kg)"
             value={gewicht}

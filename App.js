@@ -12,6 +12,7 @@ import InitalScreen from "./screens/InitalScreen";
 export default function App() {
 
   const [load, setLoad] = useState(false);
+
   const [modules, setModules] = useState({ homeModules: [], modulList: [] });
 
   /*
@@ -19,17 +20,18 @@ export default function App() {
   */
   //clear();
 
-  const sound = new Audio.Sound();
-  async function playSound() {
+  var sound = new Audio.Sound();
+  const playSound = async () => {
     try {
-      await sound.loadAsync(require('./assets/sounds/App_Start.mp3'));
-      await sound.playAsync();
-  
+      sound = await Audio.Sound.createAsync(require('./assets/sounds/app_start3.mp3'), { shouldPlay: true });
     } catch (error) {
       console.log(error);
     }
-  }
- 
+  };
+
+  const unloadSound = async () => {
+    await sound.unloadAsync();
+  };
 
   useEffect(() => {
     getData()
@@ -54,17 +56,16 @@ export default function App() {
     setLoad(true);
   };
 
-  setTimeout(loadApp, 3000);
+  setTimeout(loadApp, 1650);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded ) {
     return <AppLoading />;
   } else {
-
     if (!load) {
       playSound();
       return <InitalScreen />
     } else {
-      sound.unloadAsync();
+      unloadSound();
       return (
         <AppearanceProvider>
           <ModulListContext.Provider value={[modules, setModules]}>
