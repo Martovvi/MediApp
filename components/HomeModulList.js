@@ -13,9 +13,11 @@ export default HomeModulList = (props) => {
     return (
         <View style={styles.scrollView}>
             <ScrollView persistentScrollbar={true} style={{ width: '100%' }}>
+
                 {modules.homeModules.map(modul => (
                     <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={navigationHandler} home />
                 ))}
+                
             </ScrollView>
         </View>
     );

@@ -8,7 +8,6 @@ import ModulButton from "./ModulButton";
 export default ModulList = (props) => {
 
     const { height } = useDimensions().window;
-
     const [modules] = useContext(ModulListContext);
 
     const onSelectHandler = modul => {
@@ -18,9 +17,11 @@ export default ModulList = (props) => {
     return (
         <View style={height > 660 ? styles.scrollView : styles.scrollViewHorizontal}>
             <ScrollView persistentScrollbar={true} style={{ width: '100%' }}>
+
                 {modules.modulList.map(modul => (
                     <ModulButton key={modul.id} title={modul.text} icon={modul.icon} onPressHandler={onSelectHandler} id={modul.id} modulListButton />
                 ))}
+                
             </ScrollView>
         </View>
     );

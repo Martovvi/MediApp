@@ -9,22 +9,17 @@ import ModulList from "../components/ModulList";
 import { storeData } from "../Data/AppStorage";
 
 export default ModulListScreen = ({ navigation }) => {
+
   const [modules, setModules] = useContext(ModulListContext);
-
   const [selectedModules, setSelectedModules] = useState([]);
-  var selectedModulesNumber = 0;
 
-  useEffect(() => {
-    if (selectedModules.length > selectedModulesNumber) {
-      selectedModulesNumber++;
-    }
-  });
-
+  //Ändern sich die Daten im Global State sollen sie auch direkt persistiert werden.
   useEffect(() => {
     storeData(modules);
   }, [modules]);
 
   const onSelectModulHandler = (modul) => {
+    //Wertet aus, ob ein Modul bereits ausgewählt wurde und setzt anschließend die aktuelle Auswahl neu.
     setSelectedModules((selectedModules) => {
       if (!selectedModules.includes(modul)) {
         return [...selectedModules, modul];
@@ -34,6 +29,7 @@ export default ModulListScreen = ({ navigation }) => {
     });
   };
 
+  //Wird nach dem Klicken das Buttons ausgeführt. Läd die aktuelle Auswahl in den Global State
   const onAddModulHandler = () => {
     let newHomeModules = modules.homeModules;
     let newModulList = modules.modulList;
@@ -52,22 +48,23 @@ export default ModulListScreen = ({ navigation }) => {
       modulList: newModulList,
     }));
 
-    //Leeren des Arrays für eine erneute Verwendung
+    //Leeren der aktuellen Auswahl für eine erneute Verwendung
     setSelectedModules([]);
   };
 
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
         <Text style={styles.appTitle}> Module </Text>
+
       </View>
       <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
-        <ModulList
-          navigation={navigation}
-          selectModulHandler={onSelectModulHandler}
-        />
+
+        <ModulList navigation={navigation} selectModulHandler={onSelectModulHandler}/>
 
         <BgButton text title="Hinzufügen" onClick={onAddModulHandler} />
+        
       </View>
     </View>
   );

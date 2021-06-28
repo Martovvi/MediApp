@@ -3,7 +3,6 @@ import { createContext } from 'react';
 
 export const ModulListContext = createContext({});
 
-
 export const DefaultModul = [
 
     { id: 1, text: "BMI", icon: "body" },

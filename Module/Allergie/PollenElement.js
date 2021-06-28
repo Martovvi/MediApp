@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 export default PollenElement = (props) => {
+
   var color = ceckSeverity(props.severity);
 
   return (
@@ -11,6 +12,7 @@ export default PollenElement = (props) => {
   );
 };
 
+//Wertet die Pollenbelastung aus und ordnet eine Farbe zu.
 function ceckSeverity(value) {
   switch (value) {
     case "0":

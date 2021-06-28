@@ -14,8 +14,10 @@ export const getData = () => {
 
         AsyncStorage.getItem('APPDATA').then(value => {
             if (value != null) {
+                //Sind Daten vorhanden werden diese zurück gegeben.
                 resolve(value);
             } else {
+                //Ansonsten werden die Standard Daten aus den Dummy Data geladen.
                 resolve(JSON.stringify({ homeModules: DefaultModul, modulList: Modules.filter(modul => modul.id != 1) }));
             }
         });

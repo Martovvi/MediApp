@@ -5,10 +5,11 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
 
-export default Allergiekalender = (props) => {
+export default Allergiekalender = () => {
 
+  //Verhindern das Schwenken des Pollen Moduls in den Landscape Mode.
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-
+  //Muss wieder frei gegeben werden wenn das Modul verlassen wird.
   useEffect(() => {
     return function cleanUp() {
       ScreenOrientation.unlockAsync();
@@ -18,14 +19,14 @@ export default Allergiekalender = (props) => {
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
         <Text style={styles.appTitle}> Allergiekalender</Text>
+
       </View>
       <View style={[LayoutStyles.middleContainer, { borderWidth: 0 }]}>
-        <Image
-          style={styles.image}
-          trans
-          source={require("../../assets/pollensaison.png")}
-        ></Image>
+
+        <Image style={styles.image} trans source={require("../../assets/pollensaison.png")}/>
+
       </View>
     </View>
   );

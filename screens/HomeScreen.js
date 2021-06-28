@@ -11,10 +11,14 @@ export default HomeScreen = ({ navigation }) => {
   return (  
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
       <Text style={styles.appTitle}> Medi App </Text>
+
       </View>
       <View style={[styles.middleContainer, LayoutStyles.middleContainer]}>
+
         <HomeModulList navigation={navigation}/>
+        
       </View>
     </View>
   );

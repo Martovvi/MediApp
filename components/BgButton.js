@@ -8,10 +8,13 @@ export default BgButton = (props) => {
 
   let ButtonComponent = TouchableOpacity;
 
+  //Je nach OS werden die Buttons anders dargestellt.
   if (Platform.OS === "android" && Platform.Version >= 21) {
     ButtonComponent = TouchableNativeFeedback;
   }
 
+  //Der BgButton bekommt ein Propertie übergeben,
+  //das darüber bestimmt welche Funktionalität er auszuführen hat und wie er dagestellt werden soll.
   var buttonStyles = [
     props.return ? LayoutStyles.returnButton : {},
     props.text ? LayoutStyles.textButton : {},
@@ -21,7 +24,9 @@ export default BgButton = (props) => {
     return (
       <ButtonComponent onPress={props.onClick}>
         <View style={buttonStyles}>
+
           <Ionicons name="arrow-back" size={60} color="white" />
+
         </View>
       </ButtonComponent>
     );
@@ -30,7 +35,9 @@ export default BgButton = (props) => {
     return (
       <ButtonComponent onPress={props.onClick}>
         <View style={buttonStyles}>
+
           <Text style={LayoutStyles.buttonText}>{props.title}</Text>
+          
         </View>
       </ButtonComponent>
     );

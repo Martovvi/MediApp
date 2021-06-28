@@ -1,9 +1,9 @@
+import React from "react";
 import { Modal, StyleSheet, Text, View } from "react-native";
 
 import BgButton from "../../components/BgButton";
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
-import React from "react";
 import { evaluateBMI } from "./BMI";
 
 export default BMIResultsScreen = (props) => {
@@ -16,12 +16,17 @@ export default BMIResultsScreen = (props) => {
         statusBarTranslucent={true}
       >
         <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
           <Text style={styles.appTitle}> BMI Rechner </Text>
+
         </View>
         <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
           <View style={styles.resultContainer}>
+
             <Text style={styles.result}>{props.bmi}</Text>
+
           </View>
+
           <Text style={styles.resultText}>
             {" "}
             Mit {props.alter} Jahren hast du einen BMI von {props.bmi}.{" "}
@@ -29,7 +34,9 @@ export default BMIResultsScreen = (props) => {
           </Text>
         </View>
         <View style={LayoutStyles.bottomContainer}>
+
           <BgButton return onClick={props.onCancelModal} />
+          
         </View>
       </Modal>
     </View>

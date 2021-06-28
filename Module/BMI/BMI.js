@@ -4,6 +4,7 @@ function evaluateBMI(bmi){
     return "Damit bist du "+'\n'+bmiKlasse;
 }
 
+//Ordnet den berechneten Werten eine passende Ausgabe zu.
 function bmiTable(bmi){
     switch(true){
         case bmi<16.00:

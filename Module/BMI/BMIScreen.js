@@ -16,6 +16,7 @@ export default MainScreen = (props) => {
   const [showBMIResults, setShowBMIResults] = useState(false);
   const [bmi, setBMI] = useState(0);
 
+  //Berechnung des Body-Mass-Index
   const calculateBMI = (körpergröße, gewicht) => {
     let calculatedBMI = (gewicht / ((körpergröße * körpergröße) / 100)) * 100;
     let roundedBMI = (
@@ -25,18 +26,7 @@ export default MainScreen = (props) => {
     return roundedBMI;
   };
 
-  const alterHandler = (inputText) => {
-    setAlter(inputText);
-  };
-
-  const körpergrößeHandler = (inputText) => {
-    setKörpergröße(inputText);
-  };
-
-  const gewichtHandler = (inputText) => {
-    setGewicht(inputText);
-  };
-
+  //Prüft ob die Eingaben korrekt sind und setzt anschließend einen useState.
   const berechnenHandler = () => {
     if (
       /^[0-9]+$/.test(alter) &&
@@ -54,6 +44,18 @@ export default MainScreen = (props) => {
     }
   };
 
+  const alterHandler = (inputText) => {
+    setAlter(inputText);
+  };
+
+  const körpergrößeHandler = (inputText) => {
+    setKörpergröße(inputText);
+  };
+
+  const gewichtHandler = (inputText) => {
+    setGewicht(inputText);
+  };
+
   const cancelModalHandler = () => {
     setShowBMIResults(false);
   };
@@ -65,26 +67,14 @@ export default MainScreen = (props) => {
   var BottomComponent;
   if (height > 500) {
     BottomComponent = (
-      <View
-        style={{
-          flexDirection: "column",
-          height: "26%",
-          justifyContent: "space-between",
-        }}
-      >
-        <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
-        <BgButton return onClick={onReturnHandler} />
-      </View>
+    <View style={{flexDirection: "column", height: "26%", justifyContent: "space-between"}}>
+      <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
+      <BgButton return onClick={onReturnHandler} />
+    </View>
     );
   } else {
     BottomComponent = (
-      <View
-        style={{
-          flexDirection: "row",
-          width: "80%",
-          justifyContent: "space-between",
-        }}
-      >
+      <View style={{flexDirection: "row", width: "80%", justifyContent: "space-between"}}>
         <BgButton return onClick={onReturnHandler} />
         <BgButton size={40} text title="Berechnen" onClick={berechnenHandler} />
       </View>
@@ -94,28 +84,15 @@ export default MainScreen = (props) => {
   return (
     <View style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
         <Text style={styles.appTitle}> BMI Rechner </Text>
+
       </View>
       <View
-        style={[
-          LayoutStyles.middleContainer,
-          { justifyContent: "flex-start", borderWidth: 0 },
-        ]}
-      >
-        <View
-          style={
-            height > 500
-              ? styles.textInputContainer
-              : styles.textInputContainerHoritontal
-          }
-        >
-          <Text
-            style={
-              height > 500
-                ? styles.textInputText
-                : styles.textInputTextHorizontal
-            }
-          >
+        style={[LayoutStyles.middleContainer, {justifyContent: "flex-start", borderWidth: 0 }]}>
+        <View style={height > 500 ? styles.textInputContainer : styles.textInputContainerHoritontal}>
+
+          <Text style={height > 500 ? styles.textInputText : styles.textInputTextHorizontal}>
             {" "}
             Alter
           </Text>
@@ -127,13 +104,8 @@ export default MainScreen = (props) => {
             onChangeText={alterHandler}
             clearTextOnFocus={true}
           />
-          <Text
-            style={
-              height > 500
-                ? styles.textInputText
-                : styles.textInputTextHorizontal
-            }
-          >
+
+          <Text style={height > 500 ? styles.textInputText : styles.textInputTextHorizontal}>
             {" "}
             Körpergröße
           </Text>
@@ -145,13 +117,8 @@ export default MainScreen = (props) => {
             onChangeText={körpergrößeHandler}
             clearTextOnFocus={true}
           />
-          <Text
-            style={
-              height > 500
-                ? styles.textInputText
-                : styles.textInputTextHorizontal
-            }
-          >
+
+          <Text style={height > 500 ? styles.textInputText : styles.textInputTextHorizontal}>
             {" "}
             Gewicht
           </Text>
@@ -164,6 +131,7 @@ export default MainScreen = (props) => {
             clearTextOnFocus={true}
           />
         </View>
+        
         {BottomComponent}
 
         <BMIResultsScreen

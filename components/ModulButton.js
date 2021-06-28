@@ -7,10 +7,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { storeData } from "../Data/AppStorage";
 
 export default ModulButton = (props) => {
-  const [selected, setSelected] = useState(false);
 
+  const [selected, setSelected] = useState(false);
   const [modules, setModules] = useContext(ModulListContext);
 
+  //Ist der ModulButton in der HomeModulList, kann ein LongPress abgefangen werden.
+  //Anschließend wird die Möglichkeit geboten das Modul aus der Liste zu entfernen.
   const longPressHandler = () => {
     if (props.home) {
       setSelected(!selected);
@@ -44,10 +46,12 @@ export default ModulButton = (props) => {
     }));
   }
 
+  //Wurden Daten manipuliert, wird dies auch im AsyncStorage angepasst.
   useEffect(() => {
     storeData(modules);
   }, [modules]);
 
+  //Abfangen eines einfach Klicks.
   const pressHandler = () => {
     if (props.modulListButton) {
       props.onPressHandler(props.title);
@@ -59,10 +63,7 @@ export default ModulButton = (props) => {
 
   return (
     <Pressable
-      style={({ pressed }) => [
-        selected || pressed ? styles.touched : styles.untouched,
-        styles.pressable,
-      ]}
+      style={({ pressed }) => [selected || pressed ? styles.touched : styles.untouched, styles.pressable]}
       onPress={pressHandler}
       onLongPress={longPressHandler}
       delayLongPress={700}
@@ -70,7 +71,9 @@ export default ModulButton = (props) => {
       <View style={styles.symbol}>
         {<Ionicons name={props.icon} size={30} color={Colors.textColor} />}
       </View>
+
       <Text style={styles.text}>{props.title}</Text>
+
     </Pressable>
   );
 };

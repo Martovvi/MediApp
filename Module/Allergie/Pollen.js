@@ -1,3 +1,5 @@
+
+//Dummy Data für die Pollen. Wird dann mit den Daten aus der Api gefüllt.
 export const Pollen = [
   { id: "asdfa0b43", name: "Ambrosia", severity: "0" },
   { id: "gfdhjb1nb", name: "Beifuss", severity: "0" },

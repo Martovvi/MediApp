@@ -1,16 +1,18 @@
 import * as ScreenOrientation from "expo-screen-orientation";
 import { Alert, FlatList, SafeAreaView, StyleSheet, Text, View, } from "react-native";
-import { Pollen, Regions } from "./Pollen";
 import React, { useEffect, useState } from "react";
+import { Picker } from "@react-native-picker/picker";
 
 import Colors from "../../constants/Colors";
 import LayoutStyles from "../../constants/LayoutStyles";
-import { Picker } from "@react-native-picker/picker";
 import PollenElement from "./PollenElement";
+import { Pollen, Regions } from "./Pollen";
 
-export default Pollenflug = (props) => {
+export default Pollenflug = () => {
+
+  //Verhindern das Schwenken des Pollen Moduls in den Landscape Mode.
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-
+  //Muss wieder frei gegeben werden wenn das Modul verlassen wird.
   useEffect(() => {
     return function cleanUp() { ScreenOrientation.unlockAsync(); }
   });
@@ -19,11 +21,13 @@ export default Pollenflug = (props) => {
 
   var fetchData;
 
+  //Nach dem Laden des Screens soll direkt die API des DWD angefragt werden. 
   useEffect(() => {
     try {
       fetch("https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json")
         .then((response) => response.json())
         .then((data) => {
+          //Speichert die Daten in fetchData zwischen.
           fetchData = data.content;
         });
     } catch (err) {
@@ -31,8 +35,11 @@ export default Pollenflug = (props) => {
     }
   });
 
+  //Wird aufgerufen, wenn im Picker eine Region ausgewählt wurde und gibt diese als Parameter mit.
+  //Anschließend werden die entsprechenden Daten der Region aus fetchData ausgelesen.
   const pollenHandler = (region) => {
 
+    //Wird der Placeholder ausgewählt passiert nichts.
     if(region != 'Placeholder'){
 
       var dataSelectedRegion = fetchData.find(
@@ -40,8 +47,10 @@ export default Pollenflug = (props) => {
       );
 
       dataSelectedRegion = dataSelectedRegion.Pollen;
-
+      
+      //Setzt die Belastungswerte in dem Pollenarray.
       setPollen(pollen => pollen.map(polle => {
+        //Überschreibt lediglich die severity.
         return { id: polle.id, name: polle.name, severity: dataSelectedRegion[polle.name].today };
       }));
     }
@@ -56,27 +65,27 @@ export default Pollenflug = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={[styles.topContainer, LayoutStyles.topContainer]}>
+
         <Text style={styles.appTitle}> Pollenflug</Text>
+
       </View>
       <View style={[LayoutStyles.middleContainer, styles.middleContainer]}>
         <View style={styles.pickers}>
           <View style={styles.pickerContainer}>
-            <Picker
-              style={styles.pickerStyle}
-              onValueChange={(itemValue) => pollenHandler(itemValue)}
-            >
-              <Picker.Item
-                color="grey"
-                label="Region auswählen"
-                value="Placeholder"
-              />
+
+            <Picker style={styles.pickerStyle} onValueChange={(itemValue) => pollenHandler(itemValue)}>
+
+              <Picker.Item color="grey" label="Region auswählen" value="Placeholder"/>
+
               {Regions.map(region => (
                 <Picker.Item key={region.name} label={region.name} value={region.name} />
               ))}
+
             </Picker>
           </View>
         </View>
         <View style={styles.flatListContainer}>
+
           <FlatList
             style={styles.flatList}
             contentContainerStyle={styles.contentContainerStyle}
@@ -85,6 +94,7 @@ export default Pollenflug = (props) => {
             keyExtractor={(item) => item.id}
             persistentScrollbar={true}
           />
+          
         </View>
       </View>
     </SafeAreaView>

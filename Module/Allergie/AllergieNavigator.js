@@ -29,10 +29,8 @@ export default AllergieNavigator = () => {
       tabBarOptions={LayoutStyles.tabBar}
     >
       <AllergieTab.Screen name="Pollenflug" component={Pollenflug} />
-      <AllergieTab.Screen
-        name="Allergiekalender"
-        component={Allergiekalender}
-      />
+      <AllergieTab.Screen name="Allergiekalender" component={Allergiekalender}/>
+      
     </AllergieTab.Navigator>
   );
 };

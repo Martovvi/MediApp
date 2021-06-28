@@ -10,8 +10,11 @@ export default TestScreen = ({navigation}) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
             <Text style={{ fontSize: 30, marginBottom: 50 }}>Dies ist ein Test Screen!</Text>
+
             <BgButton return onClick={onCklickHandler} />
+            
         </View>
     );
 };
