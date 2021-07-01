@@ -1,5 +1,5 @@
 # Medi App
-![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Maintenance](https://img.shields.io/maintenance/no/2021)
 ![MadeFor](https://img.shields.io/badge/Made%20for-VSCode-blue)
 ![GitHub forks](https://img.shields.io/github/forks/Martovvi/MediApp?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Martovvi/MediApp?style=social)
